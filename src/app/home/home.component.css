@@ -1,0 +1,21 @@
+h1 {
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-flow: row;
+}
+
+.options-box {
+  margin-right: 50px;
+}
+
+.calendar-box {
+  flex-grow: 1;
+}
+
+#logo {
+  width: 87px;
+  height: 65px;
+}
