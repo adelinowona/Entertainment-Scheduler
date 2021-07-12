@@ -8,7 +8,6 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
-    
   },
   "private": true,
   "dependencies": {
@@ -44,5 +43,17 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "typescript": "~4.3.2"
-  }
+  },
+  "description": "",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adelinowona/Entertainment-Scheduler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adelinowona/Entertainment-Scheduler/issues"
+  },
+  "homepage": "https://github.com/adelinowona/Entertainment-Scheduler#readme"
 }
