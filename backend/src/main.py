@@ -1,10 +1,10 @@
-from flask import Flask
+from flask import Flask, render_template
 
 # creating the Flask application
-app = Flask(__name__)
+app = Flask(__name__,static_url_path='',static_folder='../../frontend/dist',template_folder='../../frontend/dist')
 
 @app.route('/')
 def hello():
-    return '<h1> Hello! Welcome to Entertainment Scheduler </h1>'
+    return render_template('index.html');
 
 
