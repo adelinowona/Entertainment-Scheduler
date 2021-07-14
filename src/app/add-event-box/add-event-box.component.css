@@ -1,0 +1,71 @@
+.addEventFlexbox {
+    display: grid;
+    width: 400px;
+    height: 360px;
+    grid-template-areas:
+    "title" "title" "title"         /* Event Title */
+    "type"  "type"  "type"          /* Event Type */
+    "date"  "start" "end"           /* Time Conditions */
+    "locat" "locat" "locat"         /* Location */
+    "desc"  "desc"  "desc"          /* Description */
+    "categ" "categ" "categ";        /* Category */
+    text-align: center;
+    align-content: initial;
+}
+
+#event_title {
+    grid-area: title;
+    color: red;
+    font-size: 20px;
+    margin: 0px;
+}
+
+.eventType {
+    display: grid;
+    width: 350px;
+    grid-template-columns: 
+    "event" "task" "tv-schedule";
+    text-align: left;
+}
+
+#button_event {
+    grid-area: event;
+    color: blue;
+    font-size: 20px;
+    margin: 2px;
+}
+
+#button_task {
+    grid-area: task;
+    color: blue;
+    font-size: 20px;
+    margin: 2px;
+}
+
+#button_tv {
+    grid-area: tv-schedule;
+    color: blue;
+    font-size: 20px;
+    margin: 2px;
+}
+
+#time_date {
+    grid-area: date;
+    color: green;
+    font-size: 20px;
+    margin: 2px;
+}
+
+#time_start {
+    grid-area: start;
+    color: green;
+    font-size: 20px;
+    margin: 2px;
+}
+
+#time_end {
+    grid-area: end;
+    color: green;
+    font-size: 20px;
+    margin: 2px;
+}

@@ -1,0 +1,23 @@
+<p>add-event-box works!</p>
+<!--
+    Box for when the user wants to add an event after selecting
+    the "Add Event" button. This is where the user sets information
+    such as the type of event, when it takes place, its category, etc.
+-->
+<div class="addEventFlexbox">
+  <div style="background-color: antiquewhite;">
+    <!-- Title -->
+    <input type="text" id="event_title" placeholder="Add Title"><br><br>
+    <!-- Event Type -->
+    <div class="eventType">
+      <a id="button_event" data-role="button" data-inline="true">Event</a>
+      <a id="button_task" data-role="button" data-inline="true">Task</a>
+      <a id="button_tv" data-role="button" data-inline="true">TV Schedule</a>
+    </div>
+    <!--replace with span elements?-->
+    <!-- Time -->
+    <input type="date" id="time_date"><br><br>
+    <input type="time" id="time_start"><br><br>
+    <input type="time" id="time_end"><br><br>
+  </div>
+</div>
