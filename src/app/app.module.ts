@@ -8,6 +8,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'; // a plugin!
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
+import { AddEventBoxComponent } from './add-event-box/add-event-box.component';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -18,7 +19,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    AddEventBoxComponent
   ],
   imports: [
     BrowserModule,

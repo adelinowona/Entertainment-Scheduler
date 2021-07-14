@@ -26,3 +26,5 @@ export class HomeComponent implements OnInit {
   }
 
 }
+
+const placeholder = () => {}
