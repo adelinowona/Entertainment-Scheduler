@@ -23,7 +23,7 @@
 .eventType {
     display: grid;
     width: 350px;
-    grid-template-columns: 
+    grid-template-columns:
     "event" "task" "tv-schedule";
     text-align: left;
 }
@@ -51,7 +51,7 @@
 
 #time_date {
     grid-area: date;
-    color: green;
+    color: red;
     font-size: 20px;
     margin: 2px;
 }
