@@ -3,29 +3,30 @@
     width: 400px;
     height: 360px;
     grid-template-areas:
-    "title" "title" "title"         /* Event Title */
+    "title"                         /* Event Title */
     "event" "task"  "tv-schedule"   /* Event Type */
     "date"  "time"  "time"          /* Time Conditions */
-    "locat" "locat" "locat"         /* Location */
-    "desc"  "desc"  "desc"          /* Description */
-    "categ" "categ";        /* Category */
+    "locat"                         /* Location */
+    "desc"                          /* Description */
+    "categ";                        /* Category */
     border: 2px solid green;
 }
 
 /* TITLE */
 #event_title {
     grid-area: title;
-    color: red;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
     float: left;
     margin-left: 20px;
-    padding: 2px;
+    background-color: lightblue;
 }
 
 /* EVENT TYPE */
 #button_event {
     grid-area: event;
     color: green;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     float: left;
     margin-left: 20px;
@@ -34,12 +35,14 @@
 #button_task {
     grid-area: task;
     color: blue;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     margin-right: 8px;
 }
 #button_tv {
     grid-area: tv-schedule;
     color: blue;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
 }
 
@@ -47,6 +50,7 @@
 #time_date {
     grid-area: date;
     color: green;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     margin-left: 20px;
     float: left;
@@ -55,16 +59,19 @@
 #time_start {
     grid-area: time;
     color: green;
+    font-family: Arial, Helvetica, sans-serif;
 }
 #time_end {
     grid-area: time;
     color: green;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* LOCATION */
 #location {
     grid-area: locat;
     color: orange;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     float: left;
     margin-left: 20px;
@@ -74,6 +81,7 @@
 #description {
     grid-area: desc;
     color: black;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
     float: left;
     margin-left: 20px;
