@@ -19,12 +19,10 @@ export class HomeComponent implements OnInit {
     selectable: true,
     height: 'auto'
   };
-
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }
 
 const placeholder = () => {}
