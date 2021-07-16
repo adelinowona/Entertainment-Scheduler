@@ -28,11 +28,8 @@ h1 {
   border-radius: 25px;
   padding: 5px;
   background-color: #ddc308;
-}
-
-.eventbutton {
-  width: 80px;
-  height: 100px;
+  display: flex;
+  align-items: center;
 }
 
 /* Dropdown Button */
