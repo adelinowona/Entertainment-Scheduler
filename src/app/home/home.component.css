@@ -31,7 +31,7 @@ h1 {
   display: flex;
   align-items: center;
 }
-#addEvent:hover {
+.addEvent:hover {
   background-color: #c0ffee;
 }
 /* Dropdown Button */
