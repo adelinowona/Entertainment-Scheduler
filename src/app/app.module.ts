@@ -7,8 +7,10 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid'; // a plugin!
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { AddEventBoxComponent } from './add-event-box/add-event-box.component';
+import { HomeComponent } from './components/home/home.component';
+import { AddEventBoxComponent } from './components/add-event-box/add-event-box.component';
+import { SideOptionsComponent } from './components/side-options/side-options.component';
+import { FullCalendarComponent } from './components/full-calendar/full-calendar.component';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -20,7 +22,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   declarations: [
     AppComponent,
     HomeComponent,
-    AddEventBoxComponent
+    AddEventBoxComponent,
+    SideOptionsComponent,
+    FullCalendarComponent
   ],
   imports: [
     BrowserModule,
