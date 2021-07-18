@@ -3,11 +3,11 @@ import { CalendarOptions } from '@fullcalendar/angular';
 
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-full-calendar',
+  templateUrl: './full-calendar.component.html',
+  styleUrls: ['./full-calendar.component.css']
 })
-export class HomeComponent implements OnInit {
+export class FullCalendarComponent implements OnInit {
 
   calendarOptions: CalendarOptions = {
     headerToolbar: {
@@ -19,10 +19,12 @@ export class HomeComponent implements OnInit {
     selectable: true,
     height: 'auto'
   };
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
 }
 
 const placeholder = () => {}
