@@ -2,5 +2,5 @@
 <div class="content">
   <app-side-options></app-side-options>
   <app-full-calendar class="calendar"></app-full-calendar>
-  <app-add-event-box></app-add-event-box>
+  <app-add-event-box *ngIf="showAddEventForm"></app-add-event-box>
 </div>

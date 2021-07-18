@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-side-options',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideOptionsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private uiService: UiService) {}
 
   ngOnInit(): void {
   }
 
+  onCreate() {
+    this.uiService.openAddEvent();
+  }
 }
