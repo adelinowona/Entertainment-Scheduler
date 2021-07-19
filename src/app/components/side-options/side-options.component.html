@@ -5,13 +5,17 @@
     <!--fix so it looks better-->
       <div>Create</div>
   </span>
-
+  
   <div class="dropdown">
-    <button class="dropbtn">Legend</button>
-    <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
+    <button class="dropbtn" (click)="dropdown_legend()">Legend</button>
+    <div id=dropdown-checks class="dropdown-content">
+      <!--Placeholder options-->
+      <input type="checkbox" id="legend_option1">
+      <label for="legend_option1"> Option 1</label><br>
+      <input type="checkbox" id="legend_option2">
+      <label for="legend_option2"> Option 2</label><br>
+      <input type="checkbox" id="legend_option3">
+      <label for="legend_option3"> Option 3</label><br>
     </div>
   </div>
 </div>
