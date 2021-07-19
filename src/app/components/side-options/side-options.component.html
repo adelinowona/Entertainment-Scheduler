@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="side-options.component.css">
 <div class="options">
   <img id="logo" src="/assets/logo.png" alt="site logo">
   <div class="addEvent">
@@ -7,7 +6,7 @@
     <button class="eventButton">Add Event</button>
   </div>
   <div class="dropdown">
-    <button class="dropbtn" onclick="dropdown_legend()">Legend</button>
+    <button class="dropbtn" (click)="dropdown_legend()">Legend</button>
     <div id=dropdown-checks class="dropdown-content">
       <!--Placeholder options-->
       <input type="checkbox" id="legend_option1">

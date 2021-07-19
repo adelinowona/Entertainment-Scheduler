@@ -12,4 +12,12 @@ export class SideOptionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Dropdown Button Functionality
+  //Button click shows dropdown menu
+  dropdown_legend()
+  {
+    document.getElementById("dropdown-checks")!.classList.toggle("show");
+  }
+
+
 }
