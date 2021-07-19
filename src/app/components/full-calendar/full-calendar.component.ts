@@ -36,5 +36,3 @@ export class FullCalendarComponent implements OnInit {
   }
 
 }
-
-const placeholder = () => {}
