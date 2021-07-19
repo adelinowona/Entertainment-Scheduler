@@ -9,20 +9,23 @@ import { CalendarOptions } from '@fullcalendar/angular';
 })
 export class FullCalendarComponent implements OnInit {
 
-  calendarOptions: CalendarOptions = {
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay'
-    },
-    initialView: 'dayGridMonth',
-    selectable: true,
-    height: 'auto'
-  };
+  Events = [];
+  calendarOptions: CalendarOptions = {};
 
   constructor() { }
 
   ngOnInit(): void {
+    this.calendarOptions = {
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+      },
+      initialView: 'dayGridMonth',
+      selectable: true,
+      events: this.Events,
+      height: 'auto'
+    };
   }
 
 }
