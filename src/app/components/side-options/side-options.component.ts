@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UiService } from 'src/app/services/ui.service';
 
 @Component({
   selector: 'app-side-options',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SideOptionsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private uiService: UiService) {}
 
   ngOnInit(): void {
   }
@@ -19,5 +20,7 @@ export class SideOptionsComponent implements OnInit {
     document.getElementById("dropdown-checks")!.classList.toggle("show");
   }
 
-
+  onCreate() {
+    this.uiService.openAddEvent();
+  }
 }
