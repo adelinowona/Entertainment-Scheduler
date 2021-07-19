@@ -1,75 +1,91 @@
 .addEventFlexbox {
-    display: grid;
-    width: 400px;
-    height: 360px;
-    grid-template-areas:
-    "title" "title" "title"         /* Event Title */
-    "type"  "type"  "type"          /* Event Type */
-    "date"  "start" "end"           /* Time Conditions */
-    "locat" "locat" "locat"         /* Location */
-    "desc"  "desc"  "desc"          /* Description */
-    "categ" "categ" "categ";        /* Category */
-    text-align: center;
-    align-content: initial;
+    display: inline-block;
+    background-color: lightblue;
+    border: 2px solid green;
     position: absolute;
     right: 50%;
     top: 30%;
     z-index: 5;
 }
 
+/* TITLE */
 #event_title {
-    grid-area: title;
-    color: red;
-    font-size: 20px;
-    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    margin-top: 10px;
+    margin-left: 20px;
 }
 
-.eventType {
-    display: grid;
-    width: 350px;
-    grid-template-columns: 
-    "event" "task" "tv-schedule";
-    text-align: left;
-}
-
+/* EVENT TYPE */
 #button_event {
-    grid-area: event;
     color: blue;
-    font-size: 20px;
-    margin: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    margin-left: 20px;
 }
-
 #button_task {
-    grid-area: task;
     color: blue;
-    font-size: 20px;
-    margin: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    margin-left: 20px;
 }
-
 #button_tv {
-    grid-area: tv-schedule;
     color: blue;
-    font-size: 20px;
-    margin: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    margin-left: 20px;
 }
 
+/* EVENT TIME */
 #time_date {
-    grid-area: date;
     color: green;
-    font-size: 20px;
-    margin: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    margin-left: 20px;
+    float: left;
+    margin-right: 20px;
 }
-
 #time_start {
-    grid-area: start;
     color: green;
-    font-size: 20px;
-    margin: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#time_end {
+    color: green;
+    margin-right: 20px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-#time_end {
-    grid-area: end;
-    color: green;
-    font-size: 20px;
-    margin: 2px;
+/* LOCATION */
+#location {
+    color: orange;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    float: left;
+    margin-left: 20px;
+}
+
+/* DESCRIPTION */
+#description {
+    color: black;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    float: left;
+    margin-left: 20px;
+}
+
+/* CATEGORY */
+#category {
+    color: blue;
+    font-size: 15px;
+    float: left;
+    margin-left: 20px;
+}
+
+/* CONFIRM EVENT */
+#confirm_event {
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    float: right;
+    margin-right: 20px;
 }
