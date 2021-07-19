@@ -1,37 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <!--
-    Box for when the user wants to add an event after selecting
-    the "Add Event" button. This is where the user sets information
-    such as the type of event, when it takes place, its category, etc.
-  -->
-  <form class="addEventFlexbox">
-    <!-- TITLE -->
-    <input type="text" id="event_title" placeholder="Add Title"><br><br>
-    <!-- EVENT TYPE -->
-    <input type="radio" id="button_event" name="event_type" value="Event">
-    <label for="button_event">Event</label>
-    <input type="radio" id="button_task" name="event_type" value="Task">
-    <label for="button_task">Task</label>
-    <input type="radio" id="button_tv" name="event_type" value="TV Schedule">
-    <label for="button_tv">TV Schedule</label><br><br>
-    <!--replace with span elements?-->
-    <!-- TIME -->
-    <input type="date" id="time_date">
-    <input type="time" id="time_start"> -
-    <input type="time" id="time_end"><br><br>
-    <!-- LOCATION -->
-    <input type="text" id="location" cols="42" placeholder="Location (needs to be implemented)"><br><br>
-    <!-- DESCRIPTION -->
-    <textarea id="description" name="description" rows="5" cols="42" placeholder="Description..."></textarea>
-    <br><br><br><br><br><br>
-    <!-- CATEGORY -->
-    <select name="category" id="category">
-      <option value="default">Events</option>
-    </select>
-    <!-- CONFIRM -->
-    <button type="submit" id="confirm_event">Confirm</button>
-  </form>
-
-</html>
+<!--
+  Box for when the user wants to add an event after selecting
+  the "Add Event" button. This is where the user sets information
+  such as the type of event, when it takes place, its category, etc.
+-->
+<form class="addEventFlexbox">
+  <!-- TITLE -->
+  <input type="text" id="event_title" placeholder="Add Title"><br><br>
+  <!-- EVENT TYPE -->
+  <input type="radio" id="button_event" name="event_type" value="Event">
+  <label for="button_event">Event</label>
+  <input type="radio" id="button_task" name="event_type" value="Task">
+  <label for="button_task">Task</label>
+  <input type="radio" id="button_tv" name="event_type" value="TV Schedule">
+  <label for="button_tv">TV Schedule</label><br><br>
+  <!--replace with span elements?-->
+  <!-- TIME -->
+  <input type="date" id="time_date">
+  <input type="time" id="time_start"> -
+  <input type="time" id="time_end"><br><br>
+  <!-- LOCATION -->
+  <input type="text" id="location" cols="42" placeholder="Location (needs to be implemented)"><br><br>
+  <!-- DESCRIPTION -->
+  <textarea id="description" name="description" rows="5" cols="42" placeholder="Description..."></textarea>
+  <br><br><br><br><br><br>
+  <!-- CATEGORY -->
+  <select name="category" id="category">
+    <option value="default">Events</option>
+  </select>
+  <!-- CONFIRM -->
+  <button type="submit" id="confirm_event">Confirm</button>
+</form>
