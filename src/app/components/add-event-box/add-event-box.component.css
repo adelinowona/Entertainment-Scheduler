@@ -11,6 +11,10 @@
     "categ" "categ" "categ";        /* Category */
     text-align: center;
     align-content: initial;
+    position: absolute;
+    right: 50%;
+    top: 30%;
+    z-index: 5;
 }
 
 #event_title {
