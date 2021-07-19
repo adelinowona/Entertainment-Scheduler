@@ -30,7 +30,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "src/assets/js/side-options.js"
+              "src/assets/js/script.js"
             ]
           },
           "configurations": {
