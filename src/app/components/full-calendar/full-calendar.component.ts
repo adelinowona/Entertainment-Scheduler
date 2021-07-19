@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/angular';
+import interactionPlugin from '@fullcalendar/interaction';
+import { UiService } from 'src/app/services/ui.service';
 
 
 @Component({
@@ -12,7 +14,7 @@ export class FullCalendarComponent implements OnInit {
   Events = [];
   calendarOptions: CalendarOptions = {};
 
-  constructor() { }
+  constructor(private uiService: UiService) { }
 
   ngOnInit(): void {
     this.calendarOptions = {
@@ -24,8 +26,13 @@ export class FullCalendarComponent implements OnInit {
       initialView: 'dayGridMonth',
       selectable: true,
       events: this.Events,
+      select: this.openAddForm.bind(this),
       height: 'auto'
     };
+  }
+
+  openAddForm() {
+    this.uiService.openAddEvent();
   }
 
 }
