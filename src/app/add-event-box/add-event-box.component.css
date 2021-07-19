@@ -1,54 +1,39 @@
 .addEventFlexbox {
-    display: grid;
-    width: 400px;
-    height: 360px;
-    grid-template-areas:
-    "title"                         /* Event Title */
-    "event" "task"  "tv-schedule"   /* Event Type */
-    "date"  "time"  "time"          /* Time Conditions */
-    "locat"                         /* Location */
-    "desc"                          /* Description */
-    "categ";                        /* Category */
+    display: inline-block;
+    background-color: lightblue;
     border: 2px solid green;
 }
 
 /* TITLE */
 #event_title {
-    grid-area: title;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 24px;
-    float: left;
+    margin-top: 10px;
     margin-left: 20px;
-    background-color: lightblue;
 }
 
 /* EVENT TYPE */
 #button_event {
-    grid-area: event;
-    color: green;
+    color: blue;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-    float: left;
     margin-left: 20px;
-    margin-right: 8px;
 }
 #button_task {
-    grid-area: task;
     color: blue;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
-    margin-right: 8px;
+    margin-left: 20px;
 }
 #button_tv {
-    grid-area: tv-schedule;
     color: blue;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
+    margin-left: 20px;
 }
 
 /* EVENT TIME */
 #time_date {
-    grid-area: date;
     color: green;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
@@ -57,19 +42,17 @@
     margin-right: 20px;
 }
 #time_start {
-    grid-area: time;
     color: green;
     font-family: Arial, Helvetica, sans-serif;
 }
 #time_end {
-    grid-area: time;
     color: green;
+    margin-right: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
 /* LOCATION */
 #location {
-    grid-area: locat;
     color: orange;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
@@ -79,7 +62,6 @@
 
 /* DESCRIPTION */
 #description {
-    grid-area: desc;
     color: black;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 15px;
@@ -89,9 +71,17 @@
 
 /* CATEGORY */
 #category {
-    grid-area: categ;
     color: blue;
     font-size: 15px;
     float: left;
     margin-left: 20px;
+}
+
+/* CONFIRM EVENT */
+#confirm_event {
+    color: red;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    float: right;
+    margin-right: 20px;
 }
