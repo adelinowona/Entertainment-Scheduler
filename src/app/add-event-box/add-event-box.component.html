@@ -31,43 +31,7 @@
       <option value="default">Events</option>
     </select>
     <!-- CONFIRM -->
-    <button type="button" id="confirm_event" onclick="getEventTitle();">Confirm</button>
+    <button type="button" id="confirm_event">Confirm</button>
   </form>
-
-  <script>
-
-    // Access and return the title of an event.
-    function getEventTitle() {
-      var eventTitle = document.getElementById("event_title").value;
-      alert(eventTitle);
-      document.getElementById("event_title").innerHTML +=
-        "<div class=\"addEventFlexbox\">Hi Guys</div>";
-      //document.write(eventTitle);
-    }
-
-    // Access and return everything about the event that the user submits.
-    function getEventInfo() {
-      alert("wadadw");
-      getEventTitle();
-      getEventType();
-    }
-
-    // Access and return the type of event that the user chose.
-    function getEventType() {
-      if (document.getElementById('button_event').checked) {
-
-      }
-      else if (document.getElementById('button_task').checked) {
-
-      }
-      else if (document.getElementById('button_tv').checked) {
-
-      }
-    }
-  </script>
-
-  <div class="addEventFlexbox">
-    This is just to test the addEventBox form to see if it can retrieve user-input.
-  </div>
 
 </html>
