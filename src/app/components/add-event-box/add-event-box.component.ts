@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-event-box',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-event-box.component.css']
 })
 export class AddEventBoxComponent implements OnInit {
+  event_type: any;
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<AddEventBoxComponent>) { }
 
   ngOnInit(): void {
+
   }
 
+  close(): void {
+    document.querySelectorAll<HTMLElement>(".cdk-overlay-backdrop")[0].style.background = "rgb(0, 0, 0, .32)";
+    this.dialogRef.close();
+  }
+
+  removeOverlay() {
+    document.querySelectorAll<HTMLElement>(".cdk-overlay-backdrop")[0].style.background = "rgb(0, 0, 0, .0)";
+  }
 }

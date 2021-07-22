@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UiService } from 'src/app/services/ui.service';
-
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { AddEventBoxComponent } from '../add-event-box/add-event-box.component'
 @Component({
   selector: 'app-side-options',
   templateUrl: './side-options.component.html',
@@ -8,7 +9,7 @@ import { UiService } from 'src/app/services/ui.service';
 })
 export class SideOptionsComponent implements OnInit {
 
-  constructor(private uiService: UiService) {}
+  constructor(private uiService: UiService, public dialog: MatDialog) {}
 
   ngOnInit(): void {
   }
@@ -22,5 +23,9 @@ export class SideOptionsComponent implements OnInit {
 
   onCreate() {
     this.uiService.openAddEvent();
+  }
+
+  openAddEvent() {
+    this.dialog.open(AddEventBoxComponent);
   }
 }
