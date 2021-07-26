@@ -26,6 +26,7 @@
     "@fullcalendar/daygrid": "^5.8.0",
     "@fullcalendar/interaction": "^5.8.0",
     "@fullcalendar/timegrid": "^5.8.0",
+    "axios": "^0.21.1",
     "express": "^4.17.1",
     "path": "^0.12.7",
     "rxjs": "~6.6.0",

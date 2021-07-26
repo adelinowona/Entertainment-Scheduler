@@ -49,6 +49,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatRippleModule} from "@angular/material/core";
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {CommonModule} from "@angular/common";
+import { TvButtonComponent } from './components/tv-button/tv-button.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -62,9 +64,11 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     HomeComponent,
     AddEventBoxComponent,
     SideOptionsComponent,
-    FullCalendarComponent
+    FullCalendarComponent,
+    TvButtonComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     FullCalendarModule,
     BrowserAnimationsModule, // register FullCalendar with the app,

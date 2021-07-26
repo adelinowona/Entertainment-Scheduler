@@ -1,39 +1,25 @@
 <!--<div class="options">-->
 <!--  <img id="logo" src="/assets/logo.png" alt="site logo">-->
 <div class="side">
-<!--  <span class="addEvent" (click)="openAddEvent()">-->
-<!--      <img id="plus" src="/assets/plus.png" alt="plus">-->
-<!--    &lt;!&ndash;fix so it looks better&ndash;&gt;-->
-<!--      <div>Create</div>-->
-<!--  </span>-->
 
-  <button mat-raised-button color="basic" (click)="openAddEvent()">
+  <div class="titleBar">
+    <div class="title">Scheduler</div>
+  </div>
+
+  <button mat-raised-button class="mainBtn" color="basic" (click)="openAddEvent()">
     <span class="material-icons button-icon">add</span>
     Create
   </button>
 
-  <!--  <div class="dropdown">-->
-<!--    <button class="dropbtn" (click)="dropdown_legend()">Legend</button>-->
-<!--    <div id=dropdown-checks class="dropdown-content">-->
-<!--      &lt;!&ndash;Placeholder options&ndash;&gt;-->
-<!--      <input type="checkbox" id="legend_option1">-->
-<!--      <label for="legend_option1"> Option 1</label><br>-->
-<!--      <input type="checkbox" id="legend_option2">-->
-<!--      <label for="legend_option2"> Option 2</label><br>-->
-<!--      <input type="checkbox" id="legend_option3">-->
-<!--      <label for="legend_option3"> Option 3</label><br>-->
-<!--    </div>-->
-<!--  </div>-->
-
   <mat-nav-list class="navBtn">
     <a mat-list-item routerLink="/">
-      <mat-icon matListIcon>home</mat-icon>
-      Home
+      <span class="material-icons-outlined">home</span>
+      <span class="navText">Home</span>
     </a>
 
     <a mat-list-item routerLink="/profile">
-      <mat-icon matListIcon>account_circle</mat-icon>
-      Account
+      <span class="material-icons-outlined">account_circle</span>
+      <span class="navText">Account</span>
     </a>
 
 

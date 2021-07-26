@@ -1,78 +1,3 @@
-/*.addEventFlexbox {*/
-/*    display: grid;*/
-/*    width: 400px;*/
-/*    height: 360px;*/
-/*    grid-template-areas:*/
-/*    "title" "title" "title"         !* Event Title *!*/
-/*    "type"  "type"  "type"          !* Event Type *!*/
-/*    "date"  "start" "end"           !* Time Conditions *!*/
-/*    "locat" "locat" "locat"         !* Location *!*/
-/*    "desc"  "desc"  "desc"          !* Description *!*/
-/*    "categ" "categ" "categ";        !* Category *!*/
-/*    text-align: center;*/
-/*    align-content: initial;*/
-/*    position: absolute;*/
-/*    right: 50%;*/
-/*    top: 30%;*/
-/*    z-index: 5;*/
-/*}*/
-
-/*#event_title {*/
-/*    grid-area: title;*/
-/*    color: red;*/
-/*    font-size: 20px;*/
-/*    margin: 0px;*/
-/*}*/
-
-/*.eventType {*/
-/*    display: grid;*/
-/*    width: 350px;*/
-/*    grid-template-columns: */
-/*    "event" "task" "tv-schedule";*/
-/*    text-align: left;*/
-/*}*/
-
-/*#button_event {*/
-/*    grid-area: event;*/
-/*    color: blue;*/
-/*    font-size: 20px;*/
-/*    margin: 2px;*/
-/*}*/
-
-/*#button_task {*/
-/*    grid-area: task;*/
-/*    color: blue;*/
-/*    font-size: 20px;*/
-/*    margin: 2px;*/
-/*}*/
-
-/*#button_tv {*/
-/*    grid-area: tv-schedule;*/
-/*    color: blue;*/
-/*    font-size: 20px;*/
-/*    margin: 2px;*/
-/*}*/
-
-/*#time_date {*/
-/*    grid-area: date;*/
-/*    color: green;*/
-/*    font-size: 20px;*/
-/*    margin: 2px;*/
-/*}*/
-
-/*#time_start {*/
-/*    grid-area: start;*/
-/*    color: green;*/
-/*    font-size: 20px;*/
-/*    margin: 2px;*/
-/*}*/
-
-/*#time_end {*/
-/*    grid-area: end;*/
-/*    color: green;*/
-/*    font-size: 20px;*/
-/*    margin: 2px;*/
-/*}*/
 
 .block {
   display: block;
@@ -83,7 +8,7 @@ mat-radio-button {
   margin-right: 15px;
 }
 
-.title {
+.titleBar {
   margin-bottom: 20px;
 }
 
@@ -108,4 +33,39 @@ mat-radio-button {
   position: relative;
   top: 4px;
   right: 15px;
+}
+
+.height {
+  height: 20px;
+}
+
+mat-button-toggle-group {
+  width: 95%;
+  border: 0;
+  margin: 15px 10px;
+}
+
+.mat-button-toggle-appearance-standard {
+  border-radius: 100px;
+  width: 46px;
+  height: 46px;
+  margin-right: 10px;
+  border: 1px solid rgba(0, 0, 0, .12) !important;
+}
+
+.mat-button-toggle-appearance-standard button{
+  border-radius: 100px;
+}
+
+
+
+.resultCard {
+  width: 85%;
+  horiz-align: center;
+  margin: 5px 15px;
+}
+
+.searchResults {
+  height: 400px;
+  overflow-y: scroll;
 }
