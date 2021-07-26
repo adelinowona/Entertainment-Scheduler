@@ -1,32 +1,136 @@
+
 <!--
   Box for when the user wants to add an event after selecting
   the "Add Event" button. This is where the user sets information
   such as the type of event, when it takes place, its category, etc.
 -->
-<form class="addEventFlexbox">
-  <!-- TITLE -->
-  <input type="text" id="event_title" placeholder="Add Title"><br><br>
-  <!-- EVENT TYPE -->
-  <input type="radio" id="button_event" name="event_type" value="Event">
-  <label for="button_event">Event</label>
-  <input type="radio" id="button_task" name="event_type" value="Task">
-  <label for="button_task">Task</label>
-  <input type="radio" id="button_tv" name="event_type" value="TV Schedule">
-  <label for="button_tv">TV Schedule</label><br><br>
-  <!--replace with span elements?-->
-  <!-- TIME -->
-  <input type="date" id="time_date">
-  <input type="time" id="time_start"> -
-  <input type="time" id="time_end"><br><br>
-  <!-- LOCATION -->
-  <input type="text" id="location" cols="42" placeholder="Location (needs to be implemented)"><br><br>
-  <!-- DESCRIPTION -->
-  <textarea id="description" name="description" rows="5" cols="42" placeholder="Description..."></textarea>
-  <br><br><br><br><br><br>
-  <!-- CATEGORY -->
-  <select name="category" id="category">
-    <option value="default">Events</option>
-  </select>
-  <!-- CONFIRM -->
-  <button type="submit" id="confirm_event">Confirm</button>
-</form>
+<div class="form" >
+  <mat-card-title class="title inline" >Create</mat-card-title>
+  <span (click)="removeOverlay()" class="material-icons inline grey drag" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>drag_indicator</span>
+  <div class="height"></div>
+
+  <mat-tab-group>
+    <mat-tab label="Event">
+      <div class="height"></div>
+      <form [formGroup]="eventForm">
+
+        <mat-form-field appearance="outline" class="block">
+          <mat-label>Title</mat-label>
+          <input matInput placeholder="" formControlName="title">
+        </mat-form-field>
+        <mat-checkbox formControlName="isRecurring">Recurring</mat-checkbox>
+
+        <!--  Time if not recurring-->
+        <div *ngIf="!this.eventForm.value.isRecurring" class="time block">
+          <mat-form-field  appearance="outline" class="">
+            <input matInput type="datetime-local" placeholder="Start Time">
+          </mat-form-field>
+          <p class="inline">to</p>
+          <mat-form-field  appearance="outline" class="">
+            <input matInput type="datetime-local" placeholder="Start Local">
+          </mat-form-field>
+        </div>
+
+        <!--  Time if recurring-->
+        <div *ngIf="this.eventForm.value.isRecurring" >
+          <mat-button-toggle-group name="fontStyle" aria-label="Font Style" multiple >
+            <mat-button-toggle value="one">S</mat-button-toggle>
+            <mat-button-toggle value="two">M</mat-button-toggle>
+            <mat-button-toggle value="three">T</mat-button-toggle>
+            <mat-button-toggle value="four">W</mat-button-toggle>
+            <mat-button-toggle value="five">T</mat-button-toggle>
+            <mat-button-toggle value="six">F</mat-button-toggle>
+            <mat-button-toggle value="seven">S</mat-button-toggle>
+
+          </mat-button-toggle-group>
+
+          <div class="time block">
+            <mat-form-field  appearance="outline" class="">
+              <input matInput type="time" placeholder="Start Time">
+            </mat-form-field>
+            <p class="inline">to</p>
+            <mat-form-field  appearance="outline" class="">
+              <input matInput type="time" placeholder="Start Local">
+            </mat-form-field>
+          </div>
+        </div>
+
+
+
+        <!--    <mat-form-field appearance="outline" class="block" class="block">-->
+        <!--      <mat-label>Location</mat-label>-->
+        <!--      <input matInput placeholder="" formControlName="address">-->
+        <!--    </mat-form-field>-->
+
+        <!--    <mat-form-field appearance="outline" class="block">-->
+        <!--      <mat-label>Description</mat-label>-->
+        <!--      <textarea matInput></textarea>-->
+        <!--    </mat-form-field>-->
+
+        <button mat-button  color="primary" type="submit" >Confirm</button>
+        <button mat-button  color="" (click)="close()" >Cancel</button>
+
+
+      </form>
+    </mat-tab>
+    <mat-tab label="Task"> Not implemented </mat-tab>
+    <mat-tab label="TV schudule">
+      <div class="height"></div>
+
+      <div class="searchArea" *ngIf="selectedTvInfo == null">
+        <mat-form-field appearance="outline" class="block">
+          <mat-label>TV search</mat-label>
+          <input matInput placeholder="" [(ngModel)]="tvSeachInput" (ngModelChange)="seachTV($event)">
+        </mat-form-field>
+
+        <div class="searchResults" *ngIf="searchError == '' && this.searchResult != null ">
+          <app-tv-button class="resultCard"
+                         [title]="x.Title" [Icon]="" [addtional]="x.imdbID" [year]="x.Year" [poster]="x.Poster"
+                         *ngFor="let x of searchResult" (click)="select(x)"></app-tv-button>
+        </div>
+        <button mat-button  color="" (click)="close()" >Cancel</button>
+
+      </div>
+
+      <div class="planArea" *ngIf="selectedTvInfo != null">
+        <div class="subtitle">Selected series</div>
+        <app-tv-button class="resultCard"
+                       [title]="this.selectedTvInfo.Title" [Icon]="'edit'"
+                       [addtional]="this.selectedTvInfo.totalSeasons + ' seasons. Runtime: ' + this.selectedTvInfo.Runtime"
+                       [year]="this.selectedTvInfo.Year" [poster]="this.selectedTvInfo.Poster"
+                       (click)="cancelSelect()"></app-tv-button>
+
+        <form [formGroup]="tvForm">
+          <div class="subtitle">Select Seasons</div>
+          <mat-button-toggle-group name="fontStyle" aria-label="Font Style" multiple>
+            <mat-button-toggle *ngFor="let x of this.seasonArray" value="{{x}}">{{x}}</mat-button-toggle>
+          </mat-button-toggle-group>
+
+          <div class="subtitle">Select days</div>
+          <mat-button-toggle-group name="fontStyle" aria-label="Font Style" multiple>
+            <mat-button-toggle value="one">S</mat-button-toggle>
+            <mat-button-toggle value="two">M</mat-button-toggle>
+            <mat-button-toggle value="three">T</mat-button-toggle>
+            <mat-button-toggle value="four">W</mat-button-toggle>
+            <mat-button-toggle value="five">T</mat-button-toggle>
+            <mat-button-toggle value="six">F</mat-button-toggle>
+            <mat-button-toggle value="seven">S</mat-button-toggle>
+          </mat-button-toggle-group>
+
+          <mat-form-field appearance="outline" class="block">
+            <mat-label>Episodes per day</mat-label>
+            <input matInput placeholder="" formControlName="epPerDay" type="number" value="1">
+          </mat-form-field>
+
+          <button mat-button  color="primary" type="submit" >Confirm</button>
+          <button mat-button  color="" (click)="close()" >Cancel</button>
+        </form>
+
+      </div>
+
+
+    </mat-tab>
+  </mat-tab-group>
+
+
+</div>

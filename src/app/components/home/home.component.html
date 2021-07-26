@@ -1,6 +1,34 @@
-<h1>Welcome to Entertainment Scheduler</h1>
-<div class="content">
-  <app-side-options></app-side-options>
-  <app-full-calendar class="calendar"></app-full-calendar>
-  <app-add-event-box *ngIf="showAddEventForm"></app-add-event-box>
-</div>
+<!--<div class="content">-->
+<!--  <app-side-options></app-side-options>-->
+<!--  <app-full-calendar class="calendar"></app-full-calendar>-->
+<!--&lt;!&ndash;  <app-add-event-box *ngIf="showAddEventForm"></app-add-event-box>&ndash;&gt;-->
+<!--</div>-->
+<mat-drawer-container>
+  <mat-drawer #drawer class="drawer" [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="!mobileQuery.matches">
+    <app-side-options></app-side-options>
+  </mat-drawer>
+
+  <div class="toolbar">
+    <mat-toolbar>
+      <button mat-icon-button (click)="drawer.toggle()" class="example-icon">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <span>Entertainment scheduler</span>
+      <span class="example-spacer"></span>
+
+    </mat-toolbar>
+
+    <div class="content">
+      <app-full-calendar class="calendar"></app-full-calendar>
+
+      <!--      <app-home></app-home>-->
+      <!--    <app-product product_id="608e7b0d5b18aa43c4e2f90a"></app-product>-->
+
+    </div>
+  </div>
+</mat-drawer-container>
+
+
+
+

@@ -1,91 +1,71 @@
+
+.block {
+  display: block;
+  width: auto;
+}
+
+mat-radio-button {
+  margin-right: 15px;
+}
+
+.titleBar {
+  margin-bottom: 20px;
+}
+
+.radio {
+  margin-bottom: 20px;
+}
+
+.inline {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.grey {
+  color: gray;
+}
+
 .addEventFlexbox {
-    display: inline-block;
-    background-color: lightblue;
-    border: 2px solid green;
-    position: absolute;
-    right: 50%;
-    top: 30%;
-    z-index: 5;
+  margin-top: 20px;
 }
 
-/* TITLE */
-#event_title {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
-    margin-top: 10px;
-    margin-left: 20px;
+.drag {
+  position: relative;
+  top: 4px;
+  right: 15px;
 }
 
-/* EVENT TYPE */
-#button_event {
-    color: blue;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    margin-left: 20px;
-}
-#button_task {
-    color: blue;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    margin-left: 20px;
-}
-#button_tv {
-    color: blue;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    margin-left: 20px;
+.height {
+  height: 20px;
 }
 
-/* EVENT TIME */
-#time_date {
-    color: green;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    margin-left: 20px;
-    float: left;
-    margin-right: 20px;
-}
-#time_start {
-    color: green;
-    font-family: Arial, Helvetica, sans-serif;
-}
-#time_end {
-    color: green;
-    margin-right: 20px;
-    font-family: Arial, Helvetica, sans-serif;
+mat-button-toggle-group {
+  width: 95%;
+  border: 0;
+  margin: 15px 10px;
 }
 
-/* LOCATION */
-#location {
-    color: orange;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    float: left;
-    margin-left: 20px;
+.mat-button-toggle-appearance-standard {
+  border-radius: 100px;
+  width: 46px;
+  height: 46px;
+  margin-right: 10px;
+  border: 1px solid rgba(0, 0, 0, .12) !important;
 }
 
-/* DESCRIPTION */
-#description {
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    float: left;
-    margin-left: 20px;
+.mat-button-toggle-appearance-standard button{
+  border-radius: 100px;
 }
 
-/* CATEGORY */
-#category {
-    color: blue;
-    font-size: 15px;
-    float: left;
-    margin-left: 20px;
+
+
+.resultCard {
+  width: 85%;
+  horiz-align: center;
+  margin: 5px 15px;
 }
 
-/* CONFIRM EVENT */
-#confirm_event {
-    color: red;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-    float: right;
-    margin-right: 20px;
+.searchResults {
+  height: 400px;
+  overflow-y: scroll;
 }
