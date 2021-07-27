@@ -1,0 +1,23 @@
+.poster {
+  height: 80px;
+  display: inline-block;
+  width: 55px;
+  border-radius: 4px;
+  object-fit: cover;
+
+}
+
+.info {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 20px;
+}
+
+.icon {
+  float: right;
+  vertical-align: center;
+}
+
+.resultCard {
+  margin: 2px 5px;
+}
