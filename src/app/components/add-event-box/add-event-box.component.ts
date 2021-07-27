@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {AddEventService} from "../../add-event.service";
+import {AddEventService} from "../../services/add-event.service";
 
 @Component({
   selector: 'app-add-event-box',
