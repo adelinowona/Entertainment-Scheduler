@@ -6,25 +6,31 @@
 
 .side {
   width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .titleBar {
-  height: 44px;
-  border-bottom: 1px solid rgba(0, 0, 0, .12);
-  padding: 20px 0 0 20px;
-
+  margin-top: 5px;
 }
 
-.title {
+/* .title {
   font-size: 22px;
-}
+} */
 
 .mainBtn {
   border-radius: 50px;
   height: 50px !important;
-  margin: 10px 20px;
+  width: 125px !important;
+  margin: 20px 0 20px 0;
 }
 
 .navText {
   padding-left: 12px;
+}
+
+#logo {
+  width: 120px;
+  height: 90px;
 }

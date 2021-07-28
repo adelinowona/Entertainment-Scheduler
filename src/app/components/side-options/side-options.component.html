@@ -3,7 +3,7 @@
 <div class="side">
 
   <div class="titleBar">
-    <div class="title">Scheduler</div>
+    <img id="logo" src="/assets/logo.png" alt="site logo">
   </div>
 
   <button mat-raised-button class="mainBtn" color="basic" (click)="openAddEvent()">
@@ -12,7 +12,7 @@
   </button>
 
   <mat-nav-list class="navBtn">
-    <a mat-list-item routerLink="/">
+    <!-- <a mat-list-item routerLink="/">
       <span class="material-icons-outlined">home</span>
       <span class="navText">Home</span>
     </a>
@@ -20,7 +20,16 @@
     <a mat-list-item routerLink="/profile">
       <span class="material-icons-outlined">account_circle</span>
       <span class="navText">Account</span>
-    </a>
+    </a> -->
+
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Legend
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>To be implemented</p>
+    </mat-expansion-panel>
 
 
   </mat-nav-list>

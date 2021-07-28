@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import { UiService } from 'src/app/services/ui.service';
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { AddEventBoxComponent } from '../add-event-box/add-event-box.component'
 
 
 @Component({
@@ -14,7 +16,7 @@ export class FullCalendarComponent implements OnInit {
   Events = [];
   calendarOptions: CalendarOptions = {};
 
-  constructor(private uiService: UiService) { }
+  constructor(private uiService: UiService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.calendarOptions = {
@@ -27,12 +29,12 @@ export class FullCalendarComponent implements OnInit {
       selectable: true,
       events: this.Events,
       select: this.openAddForm.bind(this),
-      height: 'auto'
+      height: '90vh'
     };
   }
 
   openAddForm() {
-    this.uiService.openAddEvent();
+    this.dialog.open(AddEventBoxComponent);
   }
 
 }

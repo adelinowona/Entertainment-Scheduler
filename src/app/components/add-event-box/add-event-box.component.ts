@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {AddEventService} from "../../services/add-event.service";
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 
 @Component({
   selector: 'app-add-event-box',
@@ -15,11 +17,13 @@ export class AddEventBoxComponent implements OnInit {
   eventForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
     isRecurring: new FormControl('', [Validators.required]),
+    allDay: new FormControl('')
   })
 
   tvForm = new FormGroup({
     id: new FormControl('', [Validators.required]),
     isRecurring: new FormControl('', [Validators.required]),
+    episodesPerDay: new FormControl(1),
   })
 
   tvSeachInput: any;
@@ -76,4 +80,16 @@ export class AddEventBoxComponent implements OnInit {
     this.seasonArray = [];
 
   }
+
+  submit(): void {
+    console.log(this.eventForm.value);
+    this.close();
+  }
+
+  submitTv(): void {
+    console.log(this.tvForm.value);
+    this.close();
+  }
+
+  
 }

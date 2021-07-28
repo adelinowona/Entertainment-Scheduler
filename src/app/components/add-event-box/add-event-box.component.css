@@ -29,6 +29,10 @@ mat-radio-button {
   margin-top: 20px;
 }
 
+#allday {
+  margin-left: 15px;
+}
+
 .drag {
   position: relative;
   top: 4px;

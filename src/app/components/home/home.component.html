@@ -8,27 +8,20 @@
     <app-side-options></app-side-options>
   </mat-drawer>
 
-  <div class="toolbar">
+
+  <div>
     <mat-toolbar>
-      <button mat-icon-button (click)="drawer.toggle()" class="example-icon">
+      <button mat-icon-button (click)="drawer.toggle(); render();" class="example-icon">
         <mat-icon>menu</mat-icon>
       </button>
 
-      <span>Entertainment scheduler</span>
+      <span>Entertainment Scheduler</span>
       <span class="example-spacer"></span>
 
     </mat-toolbar>
 
     <div class="content">
-      <app-full-calendar class="calendar"></app-full-calendar>
-
-      <!--      <app-home></app-home>-->
-      <!--    <app-product product_id="608e7b0d5b18aa43c4e2f90a"></app-product>-->
-
+      <full-calendar #calendar [options]="calendarOptions" class="calendar"></full-calendar>
     </div>
   </div>
 </mat-drawer-container>
-
-
-
-
