@@ -4,6 +4,13 @@
   width: auto;
 }
 
+.colorSelect{
+  height: 30px;
+  width: 30px;
+  margin-bottom: 5px;
+}
+
+
 mat-radio-button {
   margin-right: 15px;
 }
@@ -60,8 +67,6 @@ mat-button-toggle-group {
 .mat-button-toggle-appearance-standard button{
   border-radius: 100px;
 }
-
-
 
 .resultCard {
   width: 85%;

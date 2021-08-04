@@ -5,6 +5,8 @@ import { EventService } from 'src/app/services/event.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { HomeComponent } from '../home/home.component';
 import { ApiService } from 'src/app/services/api.service';
+import {MatButtonModule} from '@angular/material/button';
+
 
 
 @Component({
@@ -16,6 +18,8 @@ export class AddEventBoxComponent implements OnInit {
   searchResult: any;
   searchError = "";
 
+  colors: any[] = ['green', 'red', 'purple'];
+
   // formgroup for the info submitted for a regular event
   eventForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -26,6 +30,7 @@ export class AddEventBoxComponent implements OnInit {
     description: new FormControl(''),
     startTime: new FormControl(''),
     endTime: new FormControl(''),
+    backgroundColor: new FormControl(''),
   })
 
   // formgroup for the info submitted for a TV show event
@@ -39,6 +44,7 @@ export class AddEventBoxComponent implements OnInit {
   tvSeachInput: any;
 
   selectedTvInfo: any;
+  selectedColor: any;
   seasonArray = [];
 
   constructor(public dialogRef: MatDialogRef<AddEventBoxComponent>, private addEventService: EventService, private apiService: ApiService) {
