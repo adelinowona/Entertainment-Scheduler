@@ -1,0 +1,13 @@
+h1 {
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-flow: row;
+}
+
+/* the border used here is just to display the boundaries of the calendar */
+.calendar {
+  flex-grow: 2;
+}

@@ -1,0 +1,75 @@
+
+.block {
+  display: block;
+  width: auto;
+}
+
+mat-radio-button {
+  margin-right: 15px;
+}
+
+.titleBar {
+  margin-bottom: 20px;
+}
+
+.radio {
+  margin-bottom: 20px;
+}
+
+.inline {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.grey {
+  color: gray;
+}
+
+.addEventFlexbox {
+  margin-top: 20px;
+}
+
+#allday {
+  margin-left: 15px;
+}
+
+.drag {
+  position: relative;
+  top: 4px;
+  right: 15px;
+}
+
+.height {
+  height: 20px;
+}
+
+mat-button-toggle-group {
+  width: 95%;
+  border: 0;
+  margin: 15px 10px;
+}
+
+.mat-button-toggle-appearance-standard {
+  border-radius: 100px;
+  width: 46px;
+  height: 46px;
+  margin-right: 10px;
+  border: 1px solid rgba(0, 0, 0, .12) !important;
+}
+
+.mat-button-toggle-appearance-standard button{
+  border-radius: 100px;
+}
+
+
+
+.resultCard {
+  width: 85%;
+  horiz-align: center;
+  margin: 5px 15px;
+}
+
+.searchResults {
+  height: 400px;
+  overflow-y: scroll;
+}

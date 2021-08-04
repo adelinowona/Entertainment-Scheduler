@@ -1,0 +1,47 @@
+
+.button-icon {
+  position: relative;
+  bottom: 2px;
+}
+
+.side {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titleBar {
+  margin-top: 5px;
+}
+
+/* .title {
+  font-size: 22px;
+} */
+
+.mainBtn {
+  border-radius: 50px;
+  height: 50px !important;
+  width: 125px !important;
+  margin: 20px 0 20px 0;
+}
+
+.leisure-btn {
+  border-radius: 50px;
+  height: 50px !important;
+  width: min-content;
+  margin: 20px 0 20px 0;
+}
+
+.legend-btn {
+  margin: 20px 0 20px 0;
+}
+
+.navText {
+  padding-left: 12px;
+}
+
+#logo {
+  width: 120px;
+  height: 90px;
+}
