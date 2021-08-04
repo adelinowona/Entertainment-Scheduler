@@ -7,7 +7,9 @@
     "heroku-postbuild": "ng build --prod",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "run": "ng serve",
+    "remote": "ng serve --host 192.168.0.8"
   },
   "private": true,
   "dependencies": {

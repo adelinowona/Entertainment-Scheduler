@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { AddEventBoxComponent } from './components/add-event-box/add-event-box.component';
 import { SideOptionsComponent } from './components/side-options/side-options.component';
-import { FullCalendarComponent } from './components/full-calendar/full-calendar.component';
+//import { FullCalendarComponent } from './components/full-calendar/full-calendar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // angular material
@@ -64,7 +64,6 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     HomeComponent,
     AddEventBoxComponent,
     SideOptionsComponent,
-    FullCalendarComponent,
     TvButtonComponent
   ],
   imports: [

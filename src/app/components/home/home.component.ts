@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
 import { UiService } from 'src/app/services/ui.service';
 import { Subscription } from 'rxjs';
 import {MediaMatcher} from "@angular/cdk/layout";
@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
     // Unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();
   }
-  
+
   // re-renders the calendar after toggling the side options window
   render() {
     this.calendarApi = this.calendarComponent.getApi();
@@ -78,4 +78,13 @@ export class HomeComponent implements OnInit {
     this.calendarApi.render();
   }
 
+  scrows($event : any){
+    var tmp = $event.deltaY;
+    if(tmp>0){
+      this.calendarComponent.getApi().next();
+    }else if(tmp<0){
+      this.calendarComponent.getApi().prev();
+    }
+  //console.log(tmp);
+  }
 }
