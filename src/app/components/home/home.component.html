@@ -1,14 +1,10 @@
-<!--<div class="content">-->
-<!--  <app-side-options></app-side-options>-->
-<!--  <app-full-calendar class="calendar"></app-full-calendar>-->
-<!--&lt;!&ndash;  <app-add-event-box *ngIf="showAddEventForm"></app-add-event-box>&ndash;&gt;-->
-<!--</div>-->
 <mat-drawer-container>
+  <!--<Container for the side options bar-->
   <mat-drawer #drawer class="drawer" [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="!mobileQuery.matches">
     <app-side-options></app-side-options>
   </mat-drawer>
 
-
+  <!--<Container for the calendar-->
   <div>
     <mat-toolbar>
       <button mat-icon-button (click)="drawer.toggle(); render();" class="example-icon">

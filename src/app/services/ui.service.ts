@@ -1,22 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { AddEventBoxComponent } from '../components/add-event-box/add-event-box.component';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UiService {
 
-  private showAddEventForm: boolean = false;
-  private subject = new Subject<any>();
-
-  constructor() {}
+  constructor(public dialog: MatDialog) {}
 
   openAddEvent(): void {
-    this.showAddEventForm = !this.showAddEventForm;
-    this.subject.next(this.showAddEventForm);
+    this.dialog.open(AddEventBoxComponent);
   }
 
-  onOpenForm(): Observable<any> {
-    return this.subject.asObservable();
-  }
 }

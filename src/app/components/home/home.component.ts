@@ -7,8 +7,7 @@ import { ViewChild } from '@angular/core';
 import { FullCalendarComponent, CalendarOptions, Calendar } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import { AddEventBoxComponent } from '../add-event-box/add-event-box.component'
-
-
+import { EventService } from 'src/app/services/event.service';
 
 
 @Component({
@@ -20,7 +19,6 @@ export class HomeComponent implements OnInit {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
 
-  showAddEventForm: boolean = false;
   subscription: Subscription;
 
    @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
@@ -28,12 +26,12 @@ export class HomeComponent implements OnInit {
    calendarOptions: CalendarOptions = {};
 
 
-  constructor(private uiService: UiService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialog: MatDialog) {
-    /* subscribe this component to the service so it listens to
-       any changes on whether to display the AddEventform*/
-    this.subscription = this.uiService
-      .onOpenForm()
-      .subscribe((value) => (this.showAddEventForm = value));
+  constructor(private uiService: UiService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialog: MatDialog, private addEventService: EventService) {
+    /* subscribe this component to the Add event service so it listens to
+       any changes on whether to add a new event*/
+    this.subscription = this.addEventService
+      .onEventAdd()
+      .subscribe((event) => (this.addToCalendar(event)));
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
@@ -67,9 +65,17 @@ export class HomeComponent implements OnInit {
     }, 400);
   }
 
+  // opens the add event form when create is clicked
   openAddForm(arg: any) {
     this.dialog.open(AddEventBoxComponent);
     console.log(arg);
+  }
+
+  // adds an event to the calendar
+  addToCalendar(event: any){
+    this.calendarApi = this.calendarComponent.getApi();
+    this.calendarApi.addEvent(event);
+    this.calendarApi.render();
   }
 
 }

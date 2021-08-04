@@ -6,9 +6,14 @@
     <img id="logo" src="/assets/logo.png" alt="site logo">
   </div>
 
-  <button mat-raised-button class="mainBtn" color="basic" (click)="openAddEvent()">
+  <button mat-raised-button class="mainBtn" color="basic" (click)="onCreate()">
     <span class="material-icons button-icon">add</span>
     Create
+  </button>
+
+  <button mat-raised-button class="leisure-btn" color="basic">
+    <span class="material-icons button-icon">alarm</span>
+    Leisure Time Table
   </button>
 
   <mat-nav-list class="navBtn">
@@ -22,7 +27,7 @@
       <span class="navText">Account</span>
     </a> -->
 
-    <mat-expansion-panel>
+    <mat-expansion-panel class="legend-btn">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Legend

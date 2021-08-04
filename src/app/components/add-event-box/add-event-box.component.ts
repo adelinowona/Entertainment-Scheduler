@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {AddEventService} from "../../services/add-event.service";
+import { EventService } from 'src/app/services/event.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { HomeComponent } from '../home/home.component';
+import { ApiService } from 'src/app/services/api.service';
 
 
 @Component({
@@ -14,23 +16,32 @@ export class AddEventBoxComponent implements OnInit {
   searchResult: any;
   searchError = "";
 
+  // formgroup for the info submitted for a regular event
   eventForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
-    isRecurring: new FormControl('', [Validators.required]),
-    allDay: new FormControl('')
+    isRecurring: new FormControl(false, [Validators.required]),
+    allDay: new FormControl(false),
+    start: new FormControl(''),
+    end: new FormControl(''),
+    description: new FormControl(''),
+    startTime: new FormControl(''),
+    endTime: new FormControl(''),
   })
 
+  // formgroup for the info submitted for a TV show event
   tvForm = new FormGroup({
     id: new FormControl('', [Validators.required]),
     isRecurring: new FormControl('', [Validators.required]),
     episodesPerDay: new FormControl(1),
+    groupId: new FormControl(1)
   })
 
   tvSeachInput: any;
 
   selectedTvInfo: any;
   seasonArray = [];
-  constructor(public dialogRef: MatDialogRef<AddEventBoxComponent>, private addEventService: AddEventService) {
+
+  constructor(public dialogRef: MatDialogRef<AddEventBoxComponent>, private addEventService: EventService, private apiService: ApiService) {
   }
 
   ngOnInit(): void {
@@ -47,8 +58,9 @@ export class AddEventBoxComponent implements OnInit {
     document.querySelectorAll<HTMLElement>(".cdk-overlay-backdrop")[0].style.background = "rgb(0, 0, 0, .0)";
   }
 
+  // searches for the tv show from the user input
   seachTV(val: any) {
-    this.addEventService.search(val)
+    this.apiService.search(val)
       .then(res => {
         console.log(res.data);
         if (res.data.Response) {
@@ -61,7 +73,7 @@ export class AddEventBoxComponent implements OnInit {
   }
 
   select(tvInfo: any) {
-    this.addEventService.getFromId(tvInfo.imdbID)
+    this.apiService.getFromId(tvInfo.imdbID)
       .then(res => {
         this.selectedTvInfo = res.data;
 
@@ -72,7 +84,6 @@ export class AddEventBoxComponent implements OnInit {
           this.seasonArray.push(i);
         }
       })
-
   }
 
   cancelSelect() {
@@ -81,15 +92,16 @@ export class AddEventBoxComponent implements OnInit {
 
   }
 
+  // submits the data for a regular event
   submit(): void {
     console.log(this.eventForm.value);
+    this.addEventService.addEvent(this.eventForm.value);
     this.close();
   }
 
+  // submits data for a TV show event
   submitTv(): void {
     console.log(this.tvForm.value);
     this.close();
   }
-
-  
 }
