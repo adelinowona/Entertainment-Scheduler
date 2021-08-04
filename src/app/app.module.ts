@@ -51,6 +51,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import {FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import { TvButtonComponent } from './components/tv-button/tv-button.component';
+import { EventInfoComponent } from './components/event-info/event-info.component';
+import { TimeTableComponent } from './components/time-table/time-table.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -65,7 +67,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AddEventBoxComponent,
     SideOptionsComponent,
     FullCalendarComponent,
-    TvButtonComponent
+    TvButtonComponent,
+    EventInfoComponent,
+    TimeTableComponent
   ],
   imports: [
     CommonModule,

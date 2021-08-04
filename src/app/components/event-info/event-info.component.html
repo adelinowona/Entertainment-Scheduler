@@ -1,0 +1,37 @@
+<!--
+  Pop-up that displays basic information of an event-block that is 
+  already on the calendar.
+-->
+<mat-card class="event-info mat-elevation-z0">
+  <!-- User can choose to edit or delete the event. -->
+  <mat-card-actions class="event-options">
+    <span class="material-icons inline grey drag" cdkDrag cdkDragRootElement=".cdk-overlay-pane"
+      cdkDragHandle>drag_indicator</span>
+    <button mat-icon-button class="icon">
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <button mat-icon-button class="icon">
+      <mat-icon>delete</mat-icon>
+    </button>
+
+    <button mat-icon-button (click)="close()" class="icon">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-card-actions>
+
+  <!-- Box should show the title and date of the event -->
+  <mat-card-header>
+    <span mat-card-avatar class="event-color" [style.background-color]="event.backgroundColor"></span>
+    <mat-card-title>{{event.title}}</mat-card-title>
+    <mat-card-subtitle>{{event.startTime}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <!-- User will see the description of the event, if any. -->
+  <mat-card-content class="card-content">
+    <p>
+      {{event.extendedProps.description}}
+    </p>
+  </mat-card-content>
+
+</mat-card>

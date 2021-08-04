@@ -45,3 +45,98 @@
   width: 120px;
   height: 90px;
 }
+
+.legend-check{
+  text-align: center;
+}
+
+/* Red legend button */
+::ng-deep mat-checkbox.red-visible .mat-checkbox-frame {
+  border-color: #FF2626;
+}
+
+::ng-deep .mat-checkbox-ripple.red-visible .mat-ripple-element {
+  background-color: #FF2626 !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent.red-visible .mat-checkbox-background {
+  background-color: #FF2626 !important;
+}
+
+/* Orange legend button */
+::ng-deep mat-checkbox.orange-visible .mat-checkbox-frame {
+  border-color: #FF8C26;
+}
+
+::ng-deep .mat-checkbox-ripple.orange-visible .mat-ripple-element {
+  background-color: #FF8C26 !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent.orange-visible .mat-checkbox-background {
+  background-color: #FF8C26 !important;
+}
+
+/* Yellow legend button */
+::ng-deep mat-checkbox.yellow-visible .mat-checkbox-frame {
+  border-color: #FBBC04;
+}
+
+::ng-deep .mat-checkbox-ripple.yellow-visible .mat-ripple-element {
+  background-color: #FBBC04 !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent.yellow-visible .mat-checkbox-background {
+  background-color: #FBBC04 !important;
+}
+
+/* Green legend button */
+::ng-deep mat-checkbox.green-visible .mat-checkbox-frame {
+  border-color: #04F100;
+}
+
+::ng-deep .mat-checkbox-ripple.green-visible .mat-ripple-element {
+  background-color: #04F100 !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent.green-visible .mat-checkbox-background {
+  background-color: #04F100 !important;
+}
+
+/* Blue legend button */
+::ng-deep mat-checkbox.blue-visible .mat-checkbox-frame {
+  border-color: #3390FF;
+}
+
+::ng-deep .mat-checkbox-ripple.blue-visible .mat-ripple-element {
+  background-color: #3390FF !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent.blue-visible .mat-checkbox-background {
+  background-color: #3390FF !important;
+}
+
+/* Indigo legend button */
+::ng-deep mat-checkbox.indigo-visible .mat-checkbox-frame {
+  border-color: #AF6CFF;
+}
+
+::ng-deep .mat-checkbox-ripple.indigo-visible .mat-ripple-element {
+  background-color: #AF6CFF !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent.indigo-visible .mat-checkbox-background {
+  background-color: #AF6CFF !important;
+}
+
+/* violet legend button */
+::ng-deep mat-checkbox.violet-visible .mat-checkbox-frame {
+  border-color: #E334FF;
+}
+
+::ng-deep .mat-checkbox-ripple.violet-visible .mat-ripple-element {
+  background-color: #E334FF !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent.violet-visible .mat-checkbox-background {
+  background-color: #E334FF !important;
+}

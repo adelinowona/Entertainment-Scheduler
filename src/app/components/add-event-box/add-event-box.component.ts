@@ -18,7 +18,7 @@ export class AddEventBoxComponent implements OnInit {
   searchResult: any;
   searchError = "";
 
-  colors: any[] = ['green', 'red', 'purple'];
+  colors: any[] = ['#FF2626','#FF8C26', '#FBBC04', '#04F100', '#3390FF', '#AF6CFF', '#E334FF'];
 
   // formgroup for the info submitted for a regular event
   eventForm = new FormGroup({
@@ -31,6 +31,7 @@ export class AddEventBoxComponent implements OnInit {
     startTime: new FormControl(''),
     endTime: new FormControl(''),
     backgroundColor: new FormControl(''),
+    groupId: new FormControl('')
   })
 
   // formgroup for the info submitted for a TV show event
@@ -78,6 +79,7 @@ export class AddEventBoxComponent implements OnInit {
       })
   }
 
+  // confirms the selected tv show and retrieves its seasons
   select(tvInfo: any) {
     this.apiService.getFromId(tvInfo.imdbID)
       .then(res => {

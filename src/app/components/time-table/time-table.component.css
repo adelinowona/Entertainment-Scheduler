@@ -1,0 +1,11 @@
+
+.block {
+    display: block;
+    width: auto;
+}
+
+.colorSelect{
+    height: 30px;
+    width: 30px;
+    margin-bottom: 5px;
+  }

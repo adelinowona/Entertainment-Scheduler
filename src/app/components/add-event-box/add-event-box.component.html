@@ -14,12 +14,14 @@
       <div class="height"></div>
       <form [formGroup]="eventForm" (ngSubmit)="submit()">
 
+        <!-- Title of the Event -->
         <mat-form-field appearance="outline" class="block">
           <mat-label>Title</mat-label>
           <input matInput placeholder="" formControlName="title">
         </mat-form-field>
         <mat-form-field appearance="outline" class="block">
 
+          <!-- Description of the Event -->
           <mat-label>Description</mat-label>
           <textarea matInput placeholder="" formControlName="description"></textarea>
         </mat-form-field>
@@ -103,7 +105,7 @@
         <div>
           <mat-form-field appearance="outline">
             <mat-label>Select Color</mat-label>
-            <mat-select [(value)]="selectedColor" formControlName="backgroundColor">
+            <mat-select [(value)]="selectedColor" formControlName="backgroundColor" formControlName="groupId">
               <mat-select-trigger>
                 <button class="colorSelect" mat-icon-button [style.background-color]="selectedColor"></button>
               </mat-select-trigger>

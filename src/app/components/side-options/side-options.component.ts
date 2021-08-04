@@ -13,7 +13,17 @@ export class SideOptionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // opens the add event form when create is clicked
   onCreate() {
     this.uiService.openAddEvent();
+  }
+
+  // opens the leisure time table when the titular button is clicked
+  onLeisureTimeTable() {
+    this.uiService.openTimeTable();
+  }
+
+  toggleVisibility(event: any){
+    //Do stuff
   }
 }

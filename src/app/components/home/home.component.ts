@@ -7,6 +7,7 @@ import { ViewChild } from '@angular/core';
 import { FullCalendarComponent, CalendarOptions, Calendar } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import { AddEventBoxComponent } from '../add-event-box/add-event-box.component'
+import { EventInfoComponent } from '../event-info/event-info.component';
 import { EventService } from 'src/app/services/event.service';
 
 
@@ -48,6 +49,7 @@ export class HomeComponent implements OnInit {
       initialView: 'dayGridMonth',
       selectable: true,
       select: this.openAddForm.bind(this),
+      eventClick: this.openEventInfo.bind(this),
       height: '90vh'
     };
   }
@@ -65,10 +67,16 @@ export class HomeComponent implements OnInit {
     }, 400);
   }
 
-  // opens the add event form when create is clicked
-  openAddForm(arg: any) {
-    this.dialog.open(AddEventBoxComponent);
-    console.log(arg);
+  // opens the add event form when a date is clicked
+  openAddForm(date: any) {
+    this.uiService.openAddEventSeeded(date);
+    console.log(date);
+  }
+
+  // opens a popup with info about the event
+  openEventInfo(event: any) {
+    this.uiService.openClickedEventInfo(event);
+    console.log(event);
   }
 
   // adds an event to the calendar

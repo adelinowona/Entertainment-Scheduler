@@ -1,0 +1,25 @@
+
+.event-info {
+  padding: 0px;
+}
+
+.event-color{
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.event-options {
+  padding: 0px;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.icon {
+  float: right;
+  margin: 0px;
+  padding: 0px;
+}

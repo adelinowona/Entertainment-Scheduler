@@ -11,7 +11,7 @@
     Create
   </button>
 
-  <button mat-raised-button class="leisure-btn" color="basic">
+  <button mat-raised-button class="leisure-btn" color="basic" (click)="onLeisureTimeTable()">
     <span class="material-icons button-icon">alarm</span>
     Leisure Time Table
   </button>
@@ -33,7 +33,14 @@
           Legend
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <p>To be implemented</p>
+      <mat-checkbox class="red-visible" (change)="toggleVisibility($event)"></mat-checkbox><br>
+      <mat-checkbox class="orange-visible"></mat-checkbox><br>
+      <mat-checkbox class="yellow-visible"></mat-checkbox><br>
+      <mat-checkbox class="green-visible"></mat-checkbox><br>
+      <mat-checkbox class="blue-visible"></mat-checkbox><br>
+      <mat-checkbox class="indigo-visible"></mat-checkbox><br>
+      <mat-checkbox class="violet-visible"></mat-checkbox><br>
+
     </mat-expansion-panel>
 
 
