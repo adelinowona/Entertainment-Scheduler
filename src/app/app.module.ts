@@ -53,6 +53,7 @@ import {CommonModule} from "@angular/common";
 import { TvButtonComponent } from './components/tv-button/tv-button.component';
 import { EventInfoComponent } from './components/event-info/event-info.component';
 import { TimeTableComponent } from './components/time-table/time-table.component';
+import { EditEventComponent } from './components/edit-event/edit-event.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -69,7 +70,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FullCalendarComponent,
     TvButtonComponent,
     EventInfoComponent,
-    TimeTableComponent
+    TimeTableComponent,
+    EditEventComponent
   ],
   imports: [
     CommonModule,

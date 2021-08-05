@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { EditEventComponent } from '../edit-event/edit-event.component';
 
 
 
@@ -13,7 +14,7 @@ export class EventInfoComponent implements OnInit {
 
   event: any;
 
-  constructor(public dialogRef: MatDialogRef<EventInfoComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(public dialogRef: MatDialogRef<EventInfoComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog) { }
 
   // initialize the modal with the selected event data
   ngOnInit(): void {
@@ -30,5 +31,17 @@ export class EventInfoComponent implements OnInit {
   // closes the modals
   close(): void {
     this.dialogRef.close();
+  }
+
+  delete() {
+    this.event.remove();
+    this.close();
+  }
+
+  edit(): void{
+    this.dialog.open(EditEventComponent, {
+      data: this.event,
+    });
+    this.close();
   }
 }

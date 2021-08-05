@@ -19,6 +19,7 @@
 .drag {
   position: relative;
   top: 8px;
+  color: gray;
 }
 
 .event-options {

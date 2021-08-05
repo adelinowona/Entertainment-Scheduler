@@ -1,0 +1,27 @@
+.drag {
+  color: gray;
+}
+
+.colorSelect{
+  height: 30px;
+  width: 30px;
+  margin-bottom: 5px;
+}
+
+.inline {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.block {
+  display: block;
+  width: auto;
+}
+
+#allday {
+  margin-left: 15px;
+}
+
+.title {
+  margin-bottom: 20px;
+}

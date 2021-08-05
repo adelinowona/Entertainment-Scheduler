@@ -50,7 +50,15 @@ export class HomeComponent implements OnInit {
       selectable: true,
       select: this.openAddForm.bind(this),
       eventClick: this.openEventInfo.bind(this),
-      height: '90vh'
+      height: '90vh',
+      events: [
+            {
+              id: 'a',
+              title: 'my event',
+              start: '2021-08-07',
+              backgroundColor: 'red',
+            }
+          ],
     };
   }
 

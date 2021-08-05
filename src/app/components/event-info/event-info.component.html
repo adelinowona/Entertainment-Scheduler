@@ -8,11 +8,11 @@
 
     <span matTooltip="drag" class="material-icons inline grey drag" cdkDrag cdkDragRootElement=".cdk-overlay-pane"
       cdkDragHandle>drag_indicator</span>
-    <button matTooltip="edit" mat-icon-button class="icon">
+    <button matTooltip="edit" mat-icon-button class="icon" (click)="edit()">
       <mat-icon>edit</mat-icon>
     </button>
 
-    <button matTooltip="delete" mat-icon-button class="icon">
+    <button matTooltip="delete" mat-icon-button class="icon" (click)="delete()">
       <mat-icon>delete</mat-icon>
     </button>
 
