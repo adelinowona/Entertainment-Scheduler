@@ -68,13 +68,13 @@ export class HomeComponent implements OnInit {
   }
 
   // opens the add event form when a date is clicked
-  openAddForm(date: any) {
+  private openAddForm(date: any) {
     this.uiService.openAddEventSeeded(date);
     console.log(date);
   }
 
   // opens a popup with info about the event
-  openEventInfo(event: any) {
+  private openEventInfo(event: any) {
     this.uiService.openClickedEventInfo(event);
     console.log(event);
   }

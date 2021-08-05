@@ -23,7 +23,7 @@ export class EventInfoComponent implements OnInit {
   }
 
   // defocus the modal
-  removeOverlay() {
+  private removeOverlay() {
     document.querySelectorAll<HTMLElement>(".cdk-overlay-backdrop")[0].style.background = "rgb(0, 0, 0, .0)";
   }
 

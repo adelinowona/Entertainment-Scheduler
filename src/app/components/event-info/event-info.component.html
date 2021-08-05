@@ -25,7 +25,9 @@
   <mat-card-header>
     <span mat-card-avatar class="event-color" [style.background-color]="event.backgroundColor"></span>
     <mat-card-title>{{event.title}}</mat-card-title>
-    <mat-card-subtitle>{{event.startTime}}</mat-card-subtitle>
+
+    <mat-card-subtitle *ngIf="event.start != null && event.end == null">{{event.start.getDay()}}</mat-card-subtitle>
+
   </mat-card-header>
 
   <!-- User will see the description of the event, if any. -->
