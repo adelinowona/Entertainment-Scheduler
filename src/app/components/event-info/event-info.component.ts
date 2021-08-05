@@ -15,16 +15,19 @@ export class EventInfoComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EventInfoComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
+  // initialize the modal with the selected event data
   ngOnInit(): void {
     this.removeOverlay();
     console.log(this.data);
     this.event = this.data.event;
   }
 
+  // defocus the modal
   removeOverlay() {
     document.querySelectorAll<HTMLElement>(".cdk-overlay-backdrop")[0].style.background = "rgb(0, 0, 0, .0)";
   }
 
+  // closes the modals
   close(): void {
     this.dialogRef.close();
   }

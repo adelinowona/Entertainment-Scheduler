@@ -11,11 +11,13 @@ export class EventService {
 
   constructor() { }
 
+  // stores an event and creates an observable for it
   addEvent(event: any) {
     this.Event = event;
     this.subject.next(this.Event);
   }
 
+  // returns an observable to the stored event
   onEventAdd(): Observable<any> {
     return this.subject.asObservable();
   }

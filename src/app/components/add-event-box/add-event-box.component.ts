@@ -18,6 +18,7 @@ export class AddEventBoxComponent implements OnInit {
   searchResult: any;
   searchError = "";
 
+  // different colors assignable to created events
   colors: any[] = ['#FF2626','#FF8C26', '#FBBC04', '#04F100', '#3390FF', '#AF6CFF', '#E334FF'];
 
   // formgroup for the info submitted for a regular event
@@ -56,16 +57,18 @@ export class AddEventBoxComponent implements OnInit {
     this.selectedTvInfo = null;
   }
 
+  // closes the Add event form that is open
   close(): void {
     document.querySelectorAll<HTMLElement>(".cdk-overlay-backdrop")[0].style.background = "rgb(0, 0, 0, .32)";
     this.dialogRef.close();
   }
 
+  // defocus the add event form
   removeOverlay() {
     document.querySelectorAll<HTMLElement>(".cdk-overlay-backdrop")[0].style.background = "rgb(0, 0, 0, .0)";
   }
 
-  // searches for the tv show from the user input
+  // searches for the tv show from the user input using the api
   seachTV(val: any) {
     this.apiService.search(val)
       .then(res => {
