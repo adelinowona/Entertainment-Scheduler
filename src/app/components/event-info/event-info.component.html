@@ -5,13 +5,14 @@
 <mat-card class="event-info mat-elevation-z0">
   <!-- User can choose to edit or delete the event. -->
   <mat-card-actions class="event-options">
-    <span class="material-icons inline grey drag" cdkDrag cdkDragRootElement=".cdk-overlay-pane"
+
+    <span matTooltip="drag" class="material-icons inline grey drag" cdkDrag cdkDragRootElement=".cdk-overlay-pane"
       cdkDragHandle>drag_indicator</span>
-    <button mat-icon-button class="icon">
+    <button matTooltip="edit" mat-icon-button class="icon">
       <mat-icon>edit</mat-icon>
     </button>
 
-    <button mat-icon-button class="icon">
+    <button matTooltip="delete" mat-icon-button class="icon">
       <mat-icon>delete</mat-icon>
     </button>
 

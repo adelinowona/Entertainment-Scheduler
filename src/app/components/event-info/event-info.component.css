@@ -1,5 +1,6 @@
 
 .event-info {
+  display: block;
   padding: 0px;
 }
 
@@ -8,6 +9,16 @@
   width: 20px;
   border-radius: 50%;
   display: inline-block;
+}
+
+.inline {
+  display: inline-block;
+  margin-right: 150px;
+}
+
+.drag {
+  position: relative;
+  top: 8px;
 }
 
 .event-options {

@@ -55,6 +55,7 @@ export class AddEventBoxComponent implements OnInit {
   ngOnInit(): void {
     this.searchResult = null;
     this.selectedTvInfo = null;
+    
   }
 
   // closes the Add event form that is open
@@ -101,6 +102,10 @@ export class AddEventBoxComponent implements OnInit {
     this.selectedTvInfo = null;
     this.seasonArray = [];
 
+  }
+
+  updateEventForm(color: any) {
+    this.eventForm.get('backgroundColor')?.setValue(color);
   }
 
   // submits the data for a regular event
