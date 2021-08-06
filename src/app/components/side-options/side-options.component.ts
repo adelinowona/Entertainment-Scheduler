@@ -24,6 +24,6 @@ export class SideOptionsComponent implements OnInit {
   }
 
   toggleVisibility(event: any){
-    //Do stuff
+    // to be implemented
   }
 }
