@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit,HostListener} from '@angular/core';
 import { UiService } from 'src/app/services/ui.service';
 import { Subscription } from 'rxjs';
 import {MediaMatcher} from "@angular/cdk/layout";
@@ -57,6 +57,7 @@ export class HomeComponent implements OnInit {
               title: 'my event',
               start: '2021-08-07',
               backgroundColor: 'red',
+              description: 'Lecture'
             }
           ],
     };
@@ -94,4 +95,13 @@ export class HomeComponent implements OnInit {
     this.calendarApi.render();
   }
 
+  // allows the user to scroll to move the calendar forward or backward in time
+  scroll($event : any){
+    var tmp = $event.deltaY;
+    if(tmp>0){
+      this.calendarComponent.getApi().prev();
+    }else if(tmp<0){
+      this.calendarComponent.getApi().next();
+    }
+  }
 }
