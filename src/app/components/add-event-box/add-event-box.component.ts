@@ -21,6 +21,7 @@ export class AddEventBoxComponent implements OnInit {
 
   // different colors assignable to created events
   colors: any[] = [];
+  daysOfWeek: string[] = [];
 
   // formgroup for the info submitted for a regular event
   eventForm = new FormGroup({
@@ -33,7 +34,10 @@ export class AddEventBoxComponent implements OnInit {
     startTime: new FormControl(''),
     endTime: new FormControl(''),
     backgroundColor: new FormControl(''),
-    groupId: new FormControl('')
+    groupId: new FormControl(''),
+    borderColor: new FormControl(''),
+    daysOfWeek: new FormControl(''),
+    startRecur: new FormControl('')
   })
 
   // formgroup for the info submitted for a TV show event
@@ -105,10 +109,27 @@ export class AddEventBoxComponent implements OnInit {
 
   }
 
+  // adds a day when defining recurrence and removes a day if already exists
+  updateDaysOfWeek(day: string){
+    if(this.daysOfWeek.indexOf(day) == -1){
+      this.daysOfWeek.push(day);
+    }
+    else{
+      this.daysOfWeek.splice(this.daysOfWeek.indexOf(day), 1);
+    }
+  }
+
   // submits the data for a regular event
   submit(): void {
     console.log(this.eventForm.value);
+    
     this.eventForm.value.groupId = this.eventForm.value.backgroundColor;
+    this.eventForm.value.borderColor = this.eventForm.value.backgroundColor;
+    if(this.eventForm.value.isRecurring){
+      let today = new Date();
+      this.eventForm.value.daysOfWeek = this.daysOfWeek;
+      this.eventForm.value.startRecur = today.toISOString();
+    }
     this.addEventService.addEvent(this.eventForm.value);
     this.close();
   }
