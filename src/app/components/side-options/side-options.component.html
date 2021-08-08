@@ -14,19 +14,20 @@
   </button>
 
   <mat-nav-list class="navBtn">
-    <mat-expansion-panel class="legendBtn">
+    <mat-expansion-panel class="legend-btn">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Legend
         </mat-panel-title>
       </mat-expansion-panel-header>
-      <mat-checkbox class="redVisible" (change)="checkVisible($event, 1)"></mat-checkbox><br>
-      <mat-checkbox class="orangeVisible" (change)="checkVisible($event, 2)"></mat-checkbox><br>
-      <mat-checkbox class="yellowVisible" (change)="checkVisible($event, 3)"></mat-checkbox><br>
-      <mat-checkbox class="greenVisible" (change)="checkVisible($event, 4)"></mat-checkbox><br>
-      <mat-checkbox class="blueVisible" (change)="checkVisible($event, 5)"></mat-checkbox><br>
-      <mat-checkbox class="indigoVisible" (change)="checkVisible($event, 6)"></mat-checkbox><br>
-      <mat-checkbox class="violetVisible" (change)="checkVisible($event, 7)"></mat-checkbox><br>
+
+      <mat-checkbox class="red-visible" (change)="toggleVisibility($event)"></mat-checkbox><br>
+      <mat-checkbox class="orange-visible"></mat-checkbox><br>
+      <mat-checkbox class="yellow-visible"></mat-checkbox><br>
+      <mat-checkbox class="green-visible"></mat-checkbox><br>
+      <mat-checkbox class="blue-visible"></mat-checkbox><br>
+      <mat-checkbox class="indigo-visible"></mat-checkbox><br>
+      <mat-checkbox class="violet-visible"></mat-checkbox><br>
     </mat-expansion-panel>
   </mat-nav-list>
 
