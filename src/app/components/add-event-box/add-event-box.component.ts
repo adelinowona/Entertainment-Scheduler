@@ -6,6 +6,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { HomeComponent } from '../home/home.component';
 import { ApiService } from 'src/app/services/api.service';
 import {MatButtonModule} from '@angular/material/button';
+import { DataService } from 'src/app/services/data.service';
 
 
 
@@ -19,7 +20,7 @@ export class AddEventBoxComponent implements OnInit {
   searchError = "";
 
   // different colors assignable to created events
-  colors: any[] = ['#FF2626','#FF8C26', '#FBBC04', '#04F100', '#3390FF', '#AF6CFF', '#E334FF'];
+  colors: any[] = [];
 
   // formgroup for the info submitted for a regular event
   eventForm = new FormGroup({
@@ -49,13 +50,13 @@ export class AddEventBoxComponent implements OnInit {
   selectedColor: any;
   seasonArray = [];
 
-  constructor(public dialogRef: MatDialogRef<AddEventBoxComponent>, private addEventService: EventService, private apiService: ApiService) {
+  constructor(public dialogRef: MatDialogRef<AddEventBoxComponent>, private addEventService: EventService, private apiService: ApiService, private colorSource: DataService) {
   }
 
   ngOnInit(): void {
     this.searchResult = null;
     this.selectedTvInfo = null;
-    
+    this.colors = this.colorSource.colors;
   }
 
   // closes the Add event form that is open
@@ -104,13 +105,10 @@ export class AddEventBoxComponent implements OnInit {
 
   }
 
-  updateEventForm(color: any) {
-    this.eventForm.get('backgroundColor')?.setValue(color);
-  }
-
   // submits the data for a regular event
   submit(): void {
     console.log(this.eventForm.value);
+    this.eventForm.value.groupId = this.eventForm.value.backgroundColor;
     this.addEventService.addEvent(this.eventForm.value);
     this.close();
   }

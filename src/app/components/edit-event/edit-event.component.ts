@@ -4,6 +4,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { EventService } from 'src/app/services/event.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { DataService } from 'src/app/services/data.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class EditEventComponent implements OnInit {
 
   // different colors assignable to an event
-  colors: any[] = ['#FF2626','#FF8C26', '#FBBC04', '#04F100', '#3390FF', '#AF6CFF', '#E334FF'];
+  colors: any[] = [];
 
   // formgroup for the submitted edited info about the event
   editForm = new FormGroup({
@@ -29,10 +30,11 @@ export class EditEventComponent implements OnInit {
     backgroundColor: new FormControl('')
   })
 
-  constructor(public dialogRef: MatDialogRef<EditEventComponent>, private addEventService: EventService, @Inject(MAT_DIALOG_DATA) public data: any, private snackBar: MatSnackBar) {
+  constructor(public dialogRef: MatDialogRef<EditEventComponent>, private addEventService: EventService, @Inject(MAT_DIALOG_DATA) public data: any, private snackBar: MatSnackBar, private colorSource: DataService) {
   }
 
   ngOnInit(): void {
+    this.colors = this.colorSource.colors;
   }
 
   // sets the edited info for the event

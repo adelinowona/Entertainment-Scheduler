@@ -105,11 +105,11 @@
         <div>
           <mat-form-field appearance="outline">
             <mat-label>Select Color</mat-label>
-            <mat-select [(value)]="selectedColor" formControlName="groupId">
+            <mat-select [(value)]="selectedColor" formControlName="backgroundColor">
               <mat-select-trigger>
                 <button class="colorSelect" mat-icon-button [style.background-color]="selectedColor"></button>
               </mat-select-trigger>
-              <mat-option *ngFor="let color of colors" [value]="color" (click)="updateEventForm(selectedColor)">
+              <mat-option *ngFor="let color of colors" [value]="color">
                 <button class="colorSelect" mat-icon-button [style.background-color]="color"></button>
               </mat-option>
             </mat-select>
