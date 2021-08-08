@@ -104,4 +104,24 @@ export class HomeComponent implements OnInit {
       this.calendarComponent.getApi().next();
     }
   }
+
+  // toggles visibility for an event category
+  toggleVisibility(status: Boolean, color: String)
+  {
+    this.calendarApi = this.calendarComponent.getApi();
+    let eventArr = this.calendarApi.getEvents();
+    for(let i=0; i < eventArr.length; i++){
+      let temp = eventArr[i];
+      if(status == true){
+        if(temp.backgroundColor == color){
+          temp.setProp('display', 'none');
+        }
+      }
+      else{
+        if(temp.backgroundColor == color){
+          temp.setProp('display', 'auto');
+        }
+      }
+    }
+  }
 }
