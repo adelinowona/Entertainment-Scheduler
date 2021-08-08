@@ -52,7 +52,7 @@ export class AddEventBoxComponent implements OnInit {
 
   selectedTvInfo: any;
   selectedColor: any;
-  seasonArray = [];
+  seasonArray: any[] = [];
 
   constructor(public dialogRef: MatDialogRef<AddEventBoxComponent>, private addEventService: EventService, private apiService: ApiService, private colorSource: DataService) {
   }
@@ -78,7 +78,7 @@ export class AddEventBoxComponent implements OnInit {
   seachTV(val: any) {
     this.apiService.search(val)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.Response) {
           this.searchError = "";
           this.searchResult = res.data.Search;
@@ -95,11 +95,12 @@ export class AddEventBoxComponent implements OnInit {
         this.selectedTvInfo = res.data;
 
         this.seasonArray = [];
-
-        for (let i = 1; i <= parseInt(this.selectedTvInfo.totalSeasons); i++) {
-          // @ts-ignore
-          this.seasonArray.push(i);
-        }
+        this.apiService.getTVFromTMDB().then(resp => {
+          for (let i = 1; i <= parseInt(this.selectedTvInfo.totalSeasons); i++) {
+            // @ts-ignore
+            this.seasonArray.push(resp.data.seasons[i]);
+          }
+        })
       })
   }
 

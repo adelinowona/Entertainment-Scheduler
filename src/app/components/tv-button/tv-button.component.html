@@ -7,7 +7,7 @@
   <div class="info">
     <mat-card-title [innerText]="title"></mat-card-title>
     <mat-card-subtitle [innerText]="year"></mat-card-subtitle>
-    <div [innerText]="addtional"></div>
+    <div [innerText]="addtional" *ngIf="addtional != null"></div>
   </div>
   <span class="material-icons-outlined icon">{{this.Icon}}</span>
 

@@ -133,8 +133,8 @@
         </mat-form-field>
 
         <div class="searchResults" *ngIf="searchError == '' && this.searchResult != null ">
-          <app-tv-button class="resultCard" [title]="x.Title" [Icon]="" [addtional]="x.imdbID" [year]="x.Year"
-            [poster]="x.Poster" *ngFor="let x of searchResult" (click)="select(x)"></app-tv-button>
+          <app-tv-button class="resultCard" [title]="x.Title" [Icon]="" [year]="x.Year" [poster]="x.Poster"
+            *ngFor="let x of searchResult" (click)="select(x)"></app-tv-button>
         </div>
         <button mat-button color="" (click)="close()">Cancel</button>
 
@@ -150,7 +150,8 @@
         <form [formGroup]="tvForm" (ngSubmit)="submitTv()">
           <div class="subtitle" *ngIf="this.seasonArray.length != 0">Select Seasons</div>
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style" multiple>
-            <mat-button-toggle *ngFor="let x of this.seasonArray" value="{{x}}">{{x}}</mat-button-toggle>
+            <mat-button-toggle *ngFor="let x of this.seasonArray" value="{{x.season_number}}">{{x.season_number}}
+            </mat-button-toggle>
           </mat-button-toggle-group>
 
           <div class="subtitle">Select days</div>
