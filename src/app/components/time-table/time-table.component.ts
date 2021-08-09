@@ -19,8 +19,8 @@ export class TimeTableComponent implements OnInit {
 
   scheduleForm = new FormGroup({
     currDay: new FormControl(''),
-    startTime: new FormControl(''),
-    endTime: new FormControl('')
+    startTime: new FormControl('12:00'),
+    endTime: new FormControl('23:59')
   })
 
   constructor(public dialogRef: MatDialogRef<TimeTableComponent>, private dataService: DataService) { }

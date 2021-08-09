@@ -7,6 +7,7 @@ import { HomeComponent } from '../home/home.component';
 import { ApiService } from 'src/app/services/api.service';
 import {MatButtonModule} from '@angular/material/button';
 import { DataService } from 'src/app/services/data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -22,6 +23,13 @@ export class AddEventBoxComponent implements OnInit {
   // different colors assignable to created events
   colors: any[] = [];
   daysOfWeek: string[] = [];
+  selectedSeasons: number[] = [];
+
+  tvSeachInput: any;
+
+  selectedTvInfo: any;
+  selectedColor: any;
+  seasonArray: any[] = [];
 
   // formgroup for the info submitted for a regular event
   eventForm = new FormGroup({
@@ -33,7 +41,7 @@ export class AddEventBoxComponent implements OnInit {
     description: new FormControl(''),
     startTime: new FormControl(''),
     endTime: new FormControl(''),
-    backgroundColor: new FormControl(''),
+    backgroundColor: new FormControl('#FF2626'),
     groupId: new FormControl(''),
     borderColor: new FormControl(''),
     daysOfWeek: new FormControl(''),
@@ -42,25 +50,18 @@ export class AddEventBoxComponent implements OnInit {
 
   // formgroup for the info submitted for a TV show event
   tvForm = new FormGroup({
-    id: new FormControl('', [Validators.required]),
-    isRecurring: new FormControl('', [Validators.required]),
     episodesPerDay: new FormControl(1),
-    groupId: new FormControl(1)
+    backgroundColor: new FormControl('#FF2626'),
+    groupId: new FormControl('')
   })
 
-  tvSeachInput: any;
-
-  selectedTvInfo: any;
-  selectedColor: any;
-  seasonArray: any[] = [];
-
-  constructor(public dialogRef: MatDialogRef<AddEventBoxComponent>, private addEventService: EventService, private apiService: ApiService, private colorSource: DataService) {
+  constructor(public dialogRef: MatDialogRef<AddEventBoxComponent>, private addEventService: EventService, private apiService: ApiService, private dataSource: DataService, private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
     this.searchResult = null;
     this.selectedTvInfo = null;
-    this.colors = this.colorSource.colors;
+    this.colors = this.dataSource.colors;
   }
 
   // closes the Add event form that is open
@@ -104,6 +105,7 @@ export class AddEventBoxComponent implements OnInit {
       })
   }
 
+  // cancels the select
   cancelSelect() {
     this.selectedTvInfo = null;
     this.seasonArray = [];
@@ -135,9 +137,74 @@ export class AddEventBoxComponent implements OnInit {
     this.close();
   }
 
+  // adds and stores selected season numbers into an array
+  addToSelected(season: number){
+    if(this.selectedSeasons.indexOf(season) == -1){
+      this.selectedSeasons.push(season);
+    }
+    else{
+      this.selectedSeasons.splice(this.selectedSeasons.indexOf(season), 1);
+    }
+  }
+
   // submits data for a TV show event
   submitTv(): void {
     console.log(this.tvForm.value);
+    this.generateTV();
     this.close();
+  }
+
+  // Generates the tv schedule event blocks
+  generateTV(){
+    let timeSchedule = this.dataSource.getTimeTable();
+    this.daysOfWeek.sort();
+    this.selectedSeasons.sort();
+    if(Object.keys(timeSchedule).length == 0){
+      this.snackBar.open("No Leisure Time Table Set!", "", {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+    }
+    else{
+      let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      
+      let today = new Date();
+      let currSelectedDay = 0;
+
+      let day = days[parseInt(this.daysOfWeek[currSelectedDay])];
+      let currStartTime = timeSchedule[day][0];
+
+      let episodes_runtime = this.selectedTvInfo.Runtime;
+      let seriesName: string = this.selectedTvInfo.Title;
+      if(seriesName.length > 10){
+        seriesName = seriesName.substring(0,11) + '...';
+      }
+
+      for (let i = 0; i < this.selectedSeasons.length; i++) {
+        let eps = this.seasonArray[this.selectedSeasons[i]-1].episode_count;
+        for(let j = 0; j < eps; j++){
+
+          let name = seriesName + '(S' + this.seasonArray[this.selectedSeasons[i]-1].season_number + "E" + (j+1) + ')';
+
+          let dateIncrement = parseInt(this.daysOfWeek[currSelectedDay]) - today.getDay();
+          if(dateIncrement < 0){
+            dateIncrement += 7;
+          }
+          dateIncrement *= 86400000;
+          today.setTime(today.getTime() + dateIncrement);
+
+          this.addEventService.addEvent({
+            id: name,
+            title: name,
+            backgroundColor: this.tvForm.value.backgroundColor,
+            start: new Date().setTime(today.getTime()),
+            startTime: '',
+            endTime: '',
+          })
+          currSelectedDay += 1;
+          currSelectedDay %= this.daysOfWeek.length;
+        }
+      }
+    }
   }
 }

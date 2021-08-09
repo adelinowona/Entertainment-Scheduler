@@ -10,7 +10,7 @@
   <div class="height"></div>
 
   <mat-tab-group>
-    <mat-tab label="Event">
+    <mat-tab label="Event" (click)="daysOfWeek = []">
       <div class="height"></div>
       <form [formGroup]="eventForm" (ngSubmit)="submit()">
 
@@ -88,19 +88,6 @@
           </mat-button-toggle-group>
         </div>
 
-
-
-        <!--    <mat-form-field appearance="outline" class="block" class="block">-->
-        <!--      <mat-label>Location</mat-label>-->
-        <!--      <input matInput placeholder="" formControlName="address">-->
-        <!--    </mat-form-field>-->
-
-        <!--    <mat-form-field appearance="outline" class="block">-->
-        <!--      <mat-label>Description</mat-label>-->
-        <!--      <textarea matInput></textarea>-->
-        <!--    </mat-form-field>-->
-
-
         <!--Selecting the event color-->
         <div>
           <mat-form-field appearance="outline">
@@ -119,11 +106,9 @@
         <button mat-button color="primary" type="submit">Confirm</button>
         <button mat-button color="" (click)="close()">Cancel</button>
 
-
       </form>
     </mat-tab>
-    <mat-tab label="Task"> Not implemented </mat-tab>
-    <mat-tab label="TV Schedule">
+    <mat-tab label="TV Schedule" (click)="daysOfWeek = []">
       <div class="height"></div>
 
       <div class="searchArea" *ngIf="selectedTvInfo == null">
@@ -150,19 +135,21 @@
         <form [formGroup]="tvForm" (ngSubmit)="submitTv()">
           <div class="subtitle" *ngIf="this.seasonArray.length != 0">Select Seasons</div>
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style" multiple>
-            <mat-button-toggle *ngFor="let x of this.seasonArray" value="{{x.season_number}}">{{x.season_number}}
+            <mat-button-toggle *ngFor="let x of this.seasonArray" value="{{x.season_number}}"
+              (click)="addToSelected(x.season_number)">
+              {{x.season_number}}
             </mat-button-toggle>
           </mat-button-toggle-group>
 
           <div class="subtitle">Select days</div>
           <mat-button-toggle-group name="fontStyle" aria-label="Font Style" multiple>
-            <mat-button-toggle value="one">S</mat-button-toggle>
-            <mat-button-toggle value="two">M</mat-button-toggle>
-            <mat-button-toggle value="three">T</mat-button-toggle>
-            <mat-button-toggle value="four">W</mat-button-toggle>
-            <mat-button-toggle value="five">T</mat-button-toggle>
-            <mat-button-toggle value="six">F</mat-button-toggle>
-            <mat-button-toggle value="seven">S</mat-button-toggle>
+            <mat-button-toggle value="0" (click)="updateDaysOfWeek('0')">S</mat-button-toggle>
+            <mat-button-toggle value="1" (click)="updateDaysOfWeek('1')">M</mat-button-toggle>
+            <mat-button-toggle value="2" (click)="updateDaysOfWeek('2')">T</mat-button-toggle>
+            <mat-button-toggle value="3" (click)="updateDaysOfWeek('3')">W</mat-button-toggle>
+            <mat-button-toggle value="4" (click)="updateDaysOfWeek('4')">T</mat-button-toggle>
+            <mat-button-toggle value="5" (click)="updateDaysOfWeek('5')">F</mat-button-toggle>
+            <mat-button-toggle value="6" (click)="updateDaysOfWeek('6')">S</mat-button-toggle>
           </mat-button-toggle-group>
 
           <mat-form-field appearance="outline" class="block">
@@ -170,7 +157,23 @@
             <input matInput placeholder="" formControlName="episodesPerDay" type="number" value="1">
           </mat-form-field>
 
-          <button mat-button color="primary" type="submit">Confirm</button>
+          <!--Selecting the event color-->
+          <div>
+            <mat-form-field appearance="outline">
+              <mat-label>Select Color</mat-label>
+              <mat-select formControlName="backgroundColor">
+                <mat-select-trigger>
+                  <button class="colorSelect" mat-icon-button
+                    [style.background-color]="tvForm.value.backgroundColor"></button>
+                </mat-select-trigger>
+                <mat-option *ngFor="let color of colors" [value]="color">
+                  <button class="colorSelect" mat-icon-button [style.background-color]="color"></button>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <button mat-button color="primary" type="submit">Generate</button>
           <button mat-button color="" (click)="close()">Cancel</button>
         </form>
 

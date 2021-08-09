@@ -25,6 +25,7 @@ export class SideOptionsComponent implements OnInit {
     this.uiService.openTimeTable();
   }
 
+  // gets color and checkbox status and calls function to toggle visibility
   checkVisible($event: any, color: number){
     let colors: {[key:number]:string} = {};
     colors =
