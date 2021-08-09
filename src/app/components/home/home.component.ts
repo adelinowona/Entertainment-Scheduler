@@ -89,9 +89,9 @@ export class HomeComponent implements OnInit {
   // allows the user to scroll to move the calendar forward or backward in time
   scroll($event : any){
     var tmp = $event.deltaY;
-    if(tmp>0){
+    if(tmp>0 && this.calendarComponent.getApi().view.type == 'dayGridMonth'){
       this.calendarComponent.getApi().prev();
-    }else if(tmp<0){
+    }else if(tmp<0 && this.calendarComponent.getApi().view.type == 'dayGridMonth'){
       this.calendarComponent.getApi().next();
     }
   }
