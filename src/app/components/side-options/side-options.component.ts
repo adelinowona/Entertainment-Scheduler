@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UiService } from 'src/app/services/ui.service';
 import { HomeComponent } from '../home/home.component';
+import { DataService } from 'src/app/services/data.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -10,7 +12,9 @@ import { HomeComponent } from '../home/home.component';
 })
 export class SideOptionsComponent implements OnInit {
   
-  constructor(private uiService: UiService, private homeComponent: HomeComponent) {}
+  constructor(private uiService: UiService, private homeComponent: HomeComponent, private dataService: DataService) {}
+
+  series = this.dataService.getTvShows();
 
   ngOnInit(): void {
   }
@@ -40,5 +44,11 @@ export class SideOptionsComponent implements OnInit {
     }
     let actual = colors[color];
     this.homeComponent.toggleVisibility($event.checked, actual);
+  }
+
+  // removes a tv show from the calendar
+  removeShow(name: any){
+    this.homeComponent.removeTvShow(name);
+    this.dataService.removeShow(name);
   }
 }

@@ -8,13 +8,13 @@
     Create
   </button>
 
-  <button mat-raised-button class="leisure-btn" color="basic" (click)="onLeisureTimeTable()">
+  <button mat-raised-button class="leisureBtn" color="basic" (click)="onLeisureTimeTable()">
     <span class="material-icons button-icon">alarm</span>
     Leisure Time Table
   </button>
 
   <mat-nav-list class="navBtn">
-    <mat-expansion-panel class="legendBtn">
+    <mat-expansion-panel id="legendBtn">
       <mat-expansion-panel-header>
         <mat-panel-title>
           Legend
@@ -27,6 +27,22 @@
       <mat-checkbox class="blueVisible" (change)="checkVisible($event, 5)"></mat-checkbox><br>
       <mat-checkbox class="indigoVisible" (change)="checkVisible($event, 6)"></mat-checkbox><br>
       <mat-checkbox class="violetVisible" (change)="checkVisible($event, 7)"></mat-checkbox><br>
+    </mat-expansion-panel>
+  </mat-nav-list>
+
+  <mat-nav-list class="navBtn">
+    <mat-expansion-panel id="seriesBtn">
+      <mat-expansion-panel-header id="tvShowDelete">
+        <mat-panel-title>
+          TV Shows
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div>
+        <button mat-button *ngFor="let show of series;" color='warn' (click)="removeShow(show)">
+          {{show}}
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
     </mat-expansion-panel>
   </mat-nav-list>
 

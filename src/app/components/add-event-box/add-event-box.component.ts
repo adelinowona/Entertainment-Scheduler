@@ -109,7 +109,6 @@ export class AddEventBoxComponent implements OnInit {
   cancelSelect() {
     this.selectedTvInfo = null;
     this.seasonArray = [];
-
   }
 
   // adds a day when defining recurrence and removes a day if already exists
@@ -154,11 +153,36 @@ export class AddEventBoxComponent implements OnInit {
     this.close();
   }
 
+  // returns the available time between two times in minutes
+  private availableMinutes(start: string, end: string): number{
+    return this.timeInmins(end) - this.timeInmins(start);
+  }
+
+  //returns the time in minutes
+  private timeInmins(time: string): number{
+    let timeArr = time.split(":");
+    return (parseInt(timeArr[0]) * 60) + parseInt(timeArr[1]);
+  }
+
+  private toTimeString(mins: number): string {
+    return Math.floor(mins / 60) + ':' + ((mins%60 < 10) ? '0': '') + (mins%60);
+  }
+
   // Generates the tv schedule event blocks
   generateTV(){
     let timeSchedule = this.dataSource.getTimeTable();
+
+    if(this.daysOfWeek.length == 0){
+      this.daysOfWeek = ['0','1','2','3','4','5','6'];
+    }
+    if(this.selectedSeasons.length == 0){
+      for(let i = 0; i < this.seasonArray.length; i++){
+        this.selectedSeasons.push(i+1);
+      }
+    }
     this.daysOfWeek.sort();
     this.selectedSeasons.sort();
+
     if(Object.keys(timeSchedule).length == 0){
       this.snackBar.open("No Leisure Time Table Set!", "", {
         duration: 3000,
@@ -170,19 +194,41 @@ export class AddEventBoxComponent implements OnInit {
       
       let today = new Date();
       let currSelectedDay = 0;
+      if(today.getDay() == parseInt(this.daysOfWeek[currSelectedDay])){
+        today.setDate(today.getDate() + 1);
+        currSelectedDay += 1;
+        currSelectedDay %= this.daysOfWeek.length;
+      }
 
       let day = days[parseInt(this.daysOfWeek[currSelectedDay])];
-      let currStartTime = timeSchedule[day][0];
+      let dayStartTime = timeSchedule[day][0];
+      let dayEndTime = timeSchedule[day][1];
+      let availableTime = this.availableMinutes(dayStartTime, dayEndTime);
 
-      let episodes_runtime = this.selectedTvInfo.Runtime;
+      let episodes_runtime: number = parseInt(this.selectedTvInfo.Runtime);
+      let maxEpisodesForDay = Math.floor(availableTime / episodes_runtime);
+
       let seriesName: string = this.selectedTvInfo.Title;
       if(seriesName.length > 10){
         seriesName = seriesName.substring(0,11) + '...';
       }
+      this.dataSource.addShow(seriesName)
 
+      let epsSet = 0;
       for (let i = 0; i < this.selectedSeasons.length; i++) {
         let eps = this.seasonArray[this.selectedSeasons[i]-1].episode_count;
         for(let j = 0; j < eps; j++){
+
+          if(maxEpisodesForDay == 0 || this.tvForm.value.episodesPerDay == epsSet){
+            currSelectedDay += 1;
+            currSelectedDay %= this.daysOfWeek.length;
+            day = days[parseInt(this.daysOfWeek[currSelectedDay])];
+            dayStartTime = timeSchedule[day][0];
+            dayEndTime = timeSchedule[day][1];
+            availableTime = this.availableMinutes(dayStartTime, dayEndTime);
+            maxEpisodesForDay = Math.floor(availableTime / episodes_runtime);
+            epsSet = 0;
+          }
 
           let name = seriesName + '(S' + this.seasonArray[this.selectedSeasons[i]-1].season_number + "E" + (j+1) + ')';
 
@@ -193,18 +239,35 @@ export class AddEventBoxComponent implements OnInit {
           dateIncrement *= 86400000;
           today.setTime(today.getTime() + dateIncrement);
 
+          let start = new Date();
+          start.setTime(today.getTime());
+          start.setHours(dayStartTime.split(':')[0]);
+          start.setMinutes(dayStartTime.split(':')[1]);
+
+          dayEndTime = this.toTimeString(this.timeInmins(dayStartTime) + episodes_runtime);
+
+          let end = new Date();
+          end.setTime(start.getTime());
+          end.setHours(dayEndTime.split(':')[0]);
+          end.setMinutes(dayEndTime.split(':')[1]);
+
           this.addEventService.addEvent({
             id: name,
+            groupId: seriesName,
             title: name,
             backgroundColor: this.tvForm.value.backgroundColor,
-            start: new Date().setTime(today.getTime()),
-            startTime: '',
-            endTime: '',
+            start: start,
+            end: end
           })
-          currSelectedDay += 1;
-          currSelectedDay %= this.daysOfWeek.length;
+          epsSet += 1;
+          maxEpisodesForDay -= 1;
+          dayStartTime = this.toTimeString(this.timeInmins(dayStartTime) + episodes_runtime);
         }
       }
     }
+    this.daysOfWeek = [];
+    this.selectedSeasons = [];
+    this.selectedTvInfo = null;
+    this.seasonArray = [];
   }
 }

@@ -26,14 +26,23 @@
   margin: 20px 0 20px 0;
 }
 
-.leisure-btn {
+.leisureBtn {
   border-radius: 50px;
   height: 50px !important;
   width: min-content;
   margin: 20px 0 20px 0;
 }
 
-.legend-btn {
+#legendBtn {
+  margin: 20px 0 20px 0;
+}
+
+#seriesBtn{
+  /* max-width: 150px; */
+  margin: 20px 15px 20px 15px;
+}
+
+#tvShowDelete{
   margin: 20px 0 20px 0;
 }
 
@@ -44,10 +53,6 @@
 #logo {
   width: 120px;
   height: 90px;
-}
-
-.legend-check{
-  text-align: center;
 }
 
 /* Red legend button */

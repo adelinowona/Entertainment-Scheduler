@@ -27,13 +27,13 @@ export class TimeTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.timeSchedule ={
-      'Sunday': [],
-      'Monday': [],
-      'Tuesday': [],
-      'Wednesday': [],
-      'Thursday': [],
-      'Friday': [],
-      'Saturday': []
+      'Sunday': ['12:00', '23:59'],
+      'Monday': ['12:00', '23:59'],
+      'Tuesday': ['12:00', '23:59'],
+      'Wednesday': ['12:00', '23:59'],
+      'Thursday': ['12:00', '23:59'],
+      'Friday': ['12:00', '23:59'],
+      'Saturday': ['12:00', '23:59']
     }
   }
 
@@ -42,7 +42,7 @@ export class TimeTableComponent implements OnInit {
     if(this.disableTime == false){
       this.timeSchedule[this.scheduleForm.value.currDay] = [this.scheduleForm.value.startTime, this.scheduleForm.value.endTime];
       this.next = this.days.indexOf(this.scheduleForm.value.currDay) + 1;
-      if(this.next == 6)
+      if(this.next == 7)
       {
         this.next = 0;
       }

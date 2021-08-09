@@ -22,9 +22,9 @@ export class HomeComponent implements OnInit {
 
   subscription: Subscription;
 
-   @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
-   calendarApi!: Calendar;
-   calendarOptions: CalendarOptions = {};
+  @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
+  calendarApi!: Calendar;
+  calendarOptions: CalendarOptions = {};
 
 
   constructor(private uiService: UiService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialog: MatDialog, private addEventService: EventService) {
@@ -50,16 +50,7 @@ export class HomeComponent implements OnInit {
       selectable: true,
       select: this.openAddForm.bind(this),
       eventClick: this.openEventInfo.bind(this),
-      height: '90vh',
-      events: [
-            {
-              id: 'a',
-              title: 'my event',
-              start: '2021-08-07',
-              backgroundColor: '#FF2626',
-              description: 'Lecture'
-            }
-          ],
+      height: '90vh'
     };
   }
 
@@ -121,6 +112,18 @@ export class HomeComponent implements OnInit {
         if(temp.backgroundColor == color){
           temp.setProp('display', 'auto');
         }
+      }
+    }
+  }
+
+  // removes a tvshow from the calendar
+  removeTvShow(name: String){
+    this.calendarApi = this.calendarComponent.getApi();
+    let eventArr = this.calendarApi.getEvents();
+    for(let i=0; i < eventArr.length; i++){
+      let temp = eventArr[i];
+      if(temp.groupId == name){
+        temp.remove();
       }
     }
   }
