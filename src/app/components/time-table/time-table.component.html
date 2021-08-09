@@ -4,85 +4,30 @@
     week where TV scheduling can be done.
 -->
 
-<div class="form">
+<div class="form" [formGroup]="scheduleForm">
     <mat-card-title class="title inline">Set Your Free Time</mat-card-title>
-    <p></p>
 
-
-    Sunday
     <div class="time block">
-        <mat-form-field appearance="outline" class="">
-            <input matInput type="time" placeholder="Start Time" formControlName="startTime">
-        </mat-form-field>
-        -
-        <mat-form-field appearance="outline" class="">
-            <input matInput type="time" placeholder="End Time" formControlName="endTime">
+        <mat-form-field appearance="outline">
+            <mat-label>Day</mat-label>
+            <mat-select [value]="days[next]" formControlName="currDay">
+                <mat-option *ngFor="let day of days" [value]="day" (click)="disableTime = false">
+                    {{day}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
     </div>
 
-    Monday
     <div class="time block">
-        <mat-form-field appearance="outline" class="">
-            <input matInput type="time" placeholder="Start Time" formControlName="startTime">
+        <mat-form-field appearance="outline">
+            <input matInput type="time" placeholder="Start Time" formControlName="startTime" [readonly]="disableTime">
         </mat-form-field>
         -
-        <mat-form-field appearance="outline" class="">
-            <input matInput type="time" placeholder="End Time" formControlName="endTime">
+        <mat-form-field appearance="outline">
+            <input matInput type="time" placeholder="End Time" formControlName="endTime" [readonly]="disableTime">
         </mat-form-field>
     </div>
 
-    Tuesday
-    <div class="time block">
-        <mat-form-field appearance="outline" class="">
-            <input matInput type="time" placeholder="Start Time" formControlName="startTime">
-        </mat-form-field>
-        -
-        <mat-form-field appearance="outline" class="">
-            <input matInput type="time" placeholder="End Time" formControlName="endTime">
-        </mat-form-field>
-    </div>
-
-    Wednesday
-    <div class="time block">
-        <mat-form-field appearance="outline" class="">
-            <input matInput type="time" placeholder="Start Time" formControlName="startTime">
-        </mat-form-field>
-        -
-        <mat-form-field appearance="outline" class="">
-            <input matInput type="time" placeholder="End Time" formControlName="endTime">
-        </mat-form-field>
-    </div>
-
-    Thursday
-    <div class="time block">
-        <mat-form-field appearance="outline" class="">
-            <input matInput type="time" placeholder="Start Time" formControlName="startTime">
-        </mat-form-field>
-        -
-        <mat-form-field appearance="outline" class="">
-            <input matInput type="time" placeholder="End Time" formControlName="endTime">
-        </mat-form-field>
-    </div>
-
-    Friday
-    <div class="time block">
-        <mat-form-field appearance="outline" class="">
-            <input matInput type="time" placeholder="Start Time" formControlName="startTime">
-        </mat-form-field>
-        -
-        <mat-form-field appearance="outline" class="">
-            <input matInput type="time" placeholder="End Time" formControlName="endTime">
-        </mat-form-field>
-    </div>
-
-    Saturday
-    <div class="time block">
-        <mat-form-field appearance="outline" class="">
-            <input matInput type="time" placeholder="Start Time" formControlName="startTime">
-        </mat-form-field>
-        -
-        <mat-form-field appearance="outline" class="">
-            <input matInput type="time" placeholder="End Time" formControlName="endTime">
-        </mat-form-field>
-    </div>
+    <button mat-button color="primary" type="submit" id="saveBtn" (click)="onSave()">Save</button>
+    <button mat-button color="primary" type="button" id="nextBtn" (click)="nextDay()">Next</button>
 </div>

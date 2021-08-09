@@ -56,7 +56,7 @@ export class HomeComponent implements OnInit {
               id: 'a',
               title: 'my event',
               start: '2021-08-07',
-              backgroundColor: 'red',
+              backgroundColor: '#FF2626',
               description: 'Lecture'
             }
           ],

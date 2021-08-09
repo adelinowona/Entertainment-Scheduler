@@ -40,6 +40,4 @@ export class SideOptionsComponent implements OnInit {
     let actual = colors[color];
     this.homeComponent.toggleVisibility($event.checked, actual);
   }
-
-  
 }
