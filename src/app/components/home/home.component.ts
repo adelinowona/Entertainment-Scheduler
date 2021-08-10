@@ -9,6 +9,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { AddEventBoxComponent } from '../add-event-box/add-event-box.component'
 import { EventInfoComponent } from '../event-info/event-info.component';
 import { EventService } from 'src/app/services/event.service';
+import { DeviceDetectorService } from 'ngx-device-detector'
 
 
 @Component({
@@ -27,7 +28,9 @@ export class HomeComponent implements OnInit {
    calendarOptions: CalendarOptions = {};
 
 
-  constructor(private uiService: UiService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialog: MatDialog, private addEventService: EventService) {
+  constructor(private uiService: UiService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
+              public dialog: MatDialog, private addEventService: EventService, private deviceService: DeviceDetectorService) {
+    this.epicFunction();
     /* subscribe this component to the Add event service so it listens to
        any changes on whether to add a new event*/
     this.subscription = this.addEventService
@@ -67,7 +70,7 @@ export class HomeComponent implements OnInit {
     // Unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();
   }
-  
+
   // re-renders the calendar after toggling the side options window
   render() {
     this.calendarApi = this.calendarComponent.getApi();
@@ -123,5 +126,9 @@ export class HomeComponent implements OnInit {
         }
       }
     }
+  }
+
+  private epicFunction() {
+
   }
 }
