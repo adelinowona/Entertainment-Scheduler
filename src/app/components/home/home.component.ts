@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private uiService: UiService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
               public dialog: MatDialog, private addEventService: EventService, private deviceService: DeviceDetectorService) {
-    this.epicFunction();
     /* subscribe this component to the Add event service so it listens to
        any changes on whether to add a new event*/
     this.subscription = this.addEventService
@@ -47,9 +46,9 @@ export class HomeComponent implements OnInit {
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        right: this.deviceService.isMobile()?'timeGridWeek,timeGridDay':'dayGridMonth,timeGridWeek,timeGridDay'
       },
-      initialView: 'dayGridMonth',
+      initialView: this.deviceService.isMobile()?'timeGridWeek':'dayGridMonth',
       selectable: true,
       select: this.openAddForm.bind(this),
       eventClick: this.openEventInfo.bind(this),
@@ -112,8 +111,7 @@ export class HomeComponent implements OnInit {
   }
 
   // toggles visibility for an event category
-  toggleVisibility(status: Boolean, color: String)
-  {
+  toggleVisibility(status: Boolean, color: String) {
     this.calendarApi = this.calendarComponent.getApi();
     let eventArr = this.calendarApi.getEvents();
     for(let i=0; i < eventArr.length; i++){
@@ -131,9 +129,14 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  private epicFunction() {
-    if(this.deviceService.isMobile()){
+  // mobile only controls
+  goLeft() {
+    if (!this.deviceService.isMobile()){return;}
+    this.calendarComponent.getApi().prev();
+  }
 
-    }
+  goRight() {
+    if (!this.deviceService.isMobile()){return;}
+    this.calendarComponent.getApi().next();
   }
 }

@@ -17,7 +17,8 @@
     </mat-toolbar>
 
     <div class="content">
-      <full-calendar #calendar [options]="calendarOptions" class="calendar" (wheel)='scroll($event)'></full-calendar>
+      <full-calendar #calendar [options]="calendarOptions" class="calendar"
+                     (wheel)='scroll($event)' (swipeleft)="goLeft()" (swiperight)="goRight()"></full-calendar>
     </div>
   </div>
 </mat-drawer-container>
