@@ -101,6 +101,9 @@ export class HomeComponent implements OnInit {
   // allows the user to scroll to move the calendar forward or backward in time
   scroll($event : any){
     var tmp = $event.deltaY;
+    if (this.calendarComponent.getApi().view.type != "dayGridMonth"){
+      return;
+    }
     if(tmp>0){
       this.calendarComponent.getApi().prev();
     }else if(tmp<0){
@@ -129,6 +132,8 @@ export class HomeComponent implements OnInit {
   }
 
   private epicFunction() {
+    if(this.deviceService.isMobile()){
 
+    }
   }
 }
