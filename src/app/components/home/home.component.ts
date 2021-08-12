@@ -9,7 +9,9 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { AddEventBoxComponent } from '../add-event-box/add-event-box.component'
 import { EventInfoComponent } from '../event-info/event-info.component';
 import { EventService } from 'src/app/services/event.service';
-import { DeviceDetectorService } from 'ngx-device-detector'
+import { DeviceDetectorService } from 'ngx-device-detector';
+//import * as Hammer from 'hammerjs';
+import { HammerModule, HammerGestureConfig, HammerLoader, HAMMER_GESTURE_CONFIG} from '@angular/platform-browser';
 
 
 @Component({
@@ -19,6 +21,7 @@ import { DeviceDetectorService } from 'ngx-device-detector'
 })
 export class HomeComponent implements OnInit {
   mobileQuery: MediaQueryList;
+  mobileMode: boolean;
   private _mobileQueryListener: () => void;
 
   subscription: Subscription;
@@ -37,18 +40,33 @@ export class HomeComponent implements OnInit {
       .subscribe((event) => (this.addToCalendar(event)));
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.mobileMode = this.deviceService.isMobile();
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnInit(): void {
+    let tmp = this.mobileQuery.matches && this.mobileMode;
+
+    let tmp0 = ['dayGridMonth','timeGridWeek','timeGridDay']
+    let viewIndex = 0;
+    let tmp1 = () => {let i = viewIndex; viewIndex = (viewIndex+1)%3;return i}
     this.calendarOptions = {
+      customButtons: {
+        mobileView: {
+          text: 'placeholder0',
+          click: () => {
+            this.calendarComponent.getApi().changeView(tmp0[tmp1()]);
+          }
+        }
+      },
+
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: this.deviceService.isMobile()?'timeGridWeek,timeGridDay':'dayGridMonth,timeGridWeek,timeGridDay'
+        right: tmp?'mobileView':'dayGridMonth,timeGridWeek,timeGridDay'
       },
-      initialView: this.deviceService.isMobile()?'timeGridWeek':'dayGridMonth',
+      initialView: this.mobileMode?'timeGridWeek':'dayGridMonth',
       selectable: true,
       select: this.openAddForm.bind(this),
       eventClick: this.openEventInfo.bind(this),
@@ -116,7 +134,7 @@ export class HomeComponent implements OnInit {
     let eventArr = this.calendarApi.getEvents();
     for(let i=0; i < eventArr.length; i++){
       let temp = eventArr[i];
-      if(status == true){
+      if(status){
         if(temp.backgroundColor == color){
           temp.setProp('display', 'none');
         }

@@ -1,6 +1,6 @@
 <mat-drawer-container>
   <!--<Container for the side options bar-->
-  <mat-drawer #drawer class="drawer" [mode]="mobileQuery.matches ? 'over' : 'side'" [opened]="!mobileQuery.matches">
+  <mat-drawer #drawer class="drawer" [mode]="this.mobileMode ? 'over' : 'side'" [opened]="!this.mobileMode">
     <app-side-options></app-side-options>
   </mat-drawer>
 
