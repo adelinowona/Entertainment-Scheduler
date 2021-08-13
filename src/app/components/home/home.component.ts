@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit {
     let tmp0 = ['dayGridMonth','timeGridWeek','timeGridDay']
     let viewIndex = 0;
     let tmp1 = () => {let i = viewIndex; viewIndex = (viewIndex+1)%3;return i}
+
     this.calendarOptions = {
       customButtons: {
         mobileView: {
@@ -60,7 +61,6 @@ export class HomeComponent implements OnInit {
           }
         }
       },
-
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
