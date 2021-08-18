@@ -9,7 +9,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { AddEventBoxComponent } from '../add-event-box/add-event-box.component'
 import { EventInfoComponent } from '../event-info/event-info.component';
 import { EventService } from 'src/app/services/event.service';
-
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-home',
@@ -25,22 +25,37 @@ export class HomeComponent implements OnInit {
    @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
    calendarApi!: Calendar;
    calendarOptions: CalendarOptions = {};
+  private mobileMode: boolean;
 
 
-  constructor(private uiService: UiService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialog: MatDialog, private addEventService: EventService) {
+  constructor(private uiService: UiService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialog: MatDialog, private addEventService: EventService, private deviceService: DeviceDetectorService) {
     /* subscribe this component to the Add event service so it listens to
        any changes on whether to add a new event*/
     this.subscription = this.addEventService
       .onEventAdd()
       .subscribe((event) => (this.addToCalendar(event)));
 
+    this.mobileMode = this.deviceService.isMobile();
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {let tmp = this.mobileMode;
+    let tmp2 = this.mobileQuery.matches;
+    let tmp0 = ['dayGridMonth','timeGridWeek','timeGridDay']
+    let viewIndex = 0;
+    let tmp1 = () => {let i = viewIndex; viewIndex = (viewIndex+1)%3;return i}
+
     this.calendarOptions = {
+      customButtons: {
+        mobileView: {
+          text: 'Toggle View',
+          click: () => {
+            this.calendarComponent.getApi().changeView(tmp0[tmp1()]);
+          }
+        }
+      },
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
@@ -67,7 +82,7 @@ export class HomeComponent implements OnInit {
     // Unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();
   }
-  
+
   // re-renders the calendar after toggling the side options window
   render() {
     this.calendarApi = this.calendarComponent.getApi();
