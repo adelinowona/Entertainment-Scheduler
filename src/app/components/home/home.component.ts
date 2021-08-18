@@ -46,8 +46,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let tmp = this.mobileQuery.matches && this.mobileMode;
-
+    let tmp = this.mobileMode;
+    let tmp2 = this.mobileQuery.matches;
     let tmp0 = ['dayGridMonth','timeGridWeek','timeGridDay']
     let viewIndex = 0;
     let tmp1 = () => {let i = viewIndex; viewIndex = (viewIndex+1)%3;return i}
@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit {
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: tmp?'mobileView':'dayGridMonth,timeGridWeek,timeGridDay'
+        right: tmp ? 'mobileView' : 'dayGridMonth,timeGridWeek,timeGridDay'
       },
       initialView: this.mobileMode?'timeGridWeek':'dayGridMonth',
       selectable: true,
