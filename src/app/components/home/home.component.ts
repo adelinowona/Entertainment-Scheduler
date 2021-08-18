@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
 
     let viewIndex = 0;
     let tmp3 = () => {viewIndex = (viewIndex+1)%2;return viewIndex}
-
+//loasfe
     this.calendarOptions = {
       customButtons: {
         mobileView: {
