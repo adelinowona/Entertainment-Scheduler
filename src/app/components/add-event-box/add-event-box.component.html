@@ -64,12 +64,18 @@
           </mat-button-toggle-group>
 
           <div class="time block">
-            <mat-form-field appearance="outline" class="">
+            <mat-form-field appearance="outline">
               <input matInput type="time" placeholder="Start Time" formControlName="startTime">
             </mat-form-field>
             <p class="inline">to</p>
-            <mat-form-field appearance="outline" class="">
+            <mat-form-field appearance="outline">
               <input matInput type="time" placeholder="End Time" formControlName="endTime">
+            </mat-form-field>
+          </div>
+
+          <div class="time block">
+            <mat-form-field appearance="outline">
+              <input matInput type="date" placeholder="End Date" formControlName="endRecur">
             </mat-form-field>
           </div>
         </div>
@@ -86,6 +92,12 @@
             <mat-button-toggle value="6" (click)="updateDaysOfWeek('6')">S</mat-button-toggle>
 
           </mat-button-toggle-group>
+
+          <div class="time block">
+            <mat-form-field appearance="outline">
+              <input matInput type="date" placeholder="End Date" formControlName="endRecur">
+            </mat-form-field>
+          </div>
         </div>
 
         <!--Selecting the event color-->

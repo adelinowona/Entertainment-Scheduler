@@ -45,7 +45,8 @@ export class AddEventBoxComponent implements OnInit {
     groupId: new FormControl(''),
     borderColor: new FormControl(''),
     daysOfWeek: new FormControl(''),
-    startRecur: new FormControl('')
+    startRecur: new FormControl(''),
+    endRecur: new FormControl('')
   })
 
   // formgroup for the info submitted for a TV show event
@@ -99,8 +100,10 @@ export class AddEventBoxComponent implements OnInit {
         this.apiService.getTVFromTMDB().then(resp => {
           for (let i = 1; i <= parseInt(this.selectedTvInfo.totalSeasons); i++) {
             // @ts-ignore
-            this.seasonArray.push(resp.data.seasons[i]);
+            this.seasonArray.push(resp.data.seasons[i-1]);
           }
+          console.log(resp.data);
+          console.log(this.selectedTvInfo)
         })
       })
   }
