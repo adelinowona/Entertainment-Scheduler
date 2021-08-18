@@ -9,7 +9,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { AddEventBoxComponent } from '../add-event-box/add-event-box.component'
 import { EventInfoComponent } from '../event-info/event-info.component';
 import { EventService } from 'src/app/services/event.service';
-
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +18,7 @@ import { EventService } from 'src/app/services/event.service';
 })
 export class HomeComponent implements OnInit {
   mobileQuery: MediaQueryList;
+  mobileMode: boolean;
   private _mobileQueryListener: () => void;
 
   subscription: Subscription;
@@ -27,26 +28,45 @@ export class HomeComponent implements OnInit {
   calendarOptions: CalendarOptions = {};
 
 
-  constructor(private uiService: UiService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialog: MatDialog, private addEventService: EventService) {
+  constructor(private uiService: UiService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialog: MatDialog, private addEventService: EventService, private deviceService: DeviceDetectorService) {
     /* subscribe this component to the Add event service so it listens to
        any changes on whether to add a new event*/
     this.subscription = this.addEventService
       .onEventAdd()
       .subscribe((event) => (this.addToCalendar(event)));
 
+    this.mobileMode = this.deviceService.isMobile();
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnInit(): void {
+    let tmp2 = this.mobileQuery.matches;
+    let modileData = {
+      views:['timeGridWeek','timeGridDay'],
+      changeViewTxt: ['Weekly View','Daily View']
+    }
+
+    let viewIndex = 0;
+    let tmp3 = () => {viewIndex = (viewIndex+1)%2;return viewIndex}
+
     this.calendarOptions = {
+      customButtons: {
+        mobileView: {
+          text: "Change View", // ToDo: get this to actively update -> modileData.changeViewTxt[viewIndex],
+                               // Appears that Angular is statically built. Try to find workarounds
+          click: () => {
+            this.calendarComponent.getApi().changeView(modileData.views[tmp3()]);
+          }
+        }
+      },
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        right: this.mobileMode ? 'mobileView' : 'dayGridMonth,timeGridWeek,timeGridDay' // Inbuilt screen selection. Original UI is decent for mobile,
       },
-      initialView: 'dayGridMonth',
+      initialView: this.mobileMode?'timeGridWeek':'dayGridMonth',
       selectable: true,
       select: this.openAddForm.bind(this),
       eventClick: this.openEventInfo.bind(this),
@@ -58,7 +78,7 @@ export class HomeComponent implements OnInit {
     // Unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();
   }
-  
+
   // re-renders the calendar after toggling the side options window
   render() {
     this.calendarApi = this.calendarComponent.getApi();
@@ -103,7 +123,7 @@ export class HomeComponent implements OnInit {
     let eventArr = this.calendarApi.getEvents();
     for(let i=0; i < eventArr.length; i++){
       let temp = eventArr[i];
-      if(status == true){
+      if(status){
         if(temp.backgroundColor == color){
           temp.setProp('display', 'none');
         }
