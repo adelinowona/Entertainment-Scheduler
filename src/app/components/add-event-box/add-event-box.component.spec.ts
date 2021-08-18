@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AddEventBoxComponent } from './add-event-box.component';
+import {AddEventBoxComponent} from './add-event-box.component';
 
 describe('AddEventBoxComponent', () => {
   let component: AddEventBoxComponent;
@@ -8,9 +8,9 @@ describe('AddEventBoxComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddEventBoxComponent ]
+      declarations: [AddEventBoxComponent],
     })
-    .compileComponents();
+        .compileComponents();
   });
 
   beforeEach(() => {

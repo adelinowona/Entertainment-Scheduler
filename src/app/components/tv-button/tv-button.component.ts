@@ -3,7 +3,7 @@ import {Component, Input, OnInit} from '@angular/core';
 @Component({
   selector: 'app-tv-button',
   templateUrl: './tv-button.component.html',
-  styleUrls: ['./tv-button.component.css']
+  styleUrls: ['./tv-button.component.css'],
 })
 export class TvButtonComponent implements OnInit {
   @Input() addtional: any;
@@ -16,5 +16,4 @@ export class TvButtonComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

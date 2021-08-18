@@ -1,19 +1,18 @@
-import { Component, Inject, OnInit } from '@angular/core';
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
+import {Component, Inject, OnInit} from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { EditEventComponent } from '../edit-event/edit-event.component';
+import {EditEventComponent} from '../edit-event/edit-event.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
-
-
 
 
 @Component({
   selector: 'app-event-info',
   templateUrl: './event-info.component.html',
-  styleUrls: ['./event-info.component.css']
+  styleUrls: ['./event-info.component.css'],
 })
 export class EventInfoComponent implements OnInit {
-
   event: any;
 
   constructor(public dialogRef: MatDialogRef<EventInfoComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, private snackBar: MatSnackBar) { }
@@ -26,7 +25,7 @@ export class EventInfoComponent implements OnInit {
 
   // defocus the info card
   private removeOverlay() {
-    document.querySelectorAll<HTMLElement>(".cdk-overlay-backdrop")[0].style.background = "rgb(0, 0, 0, .0)";
+    document.querySelectorAll<HTMLElement>('.cdk-overlay-backdrop')[0].style.background = 'rgb(0, 0, 0, .0)';
   }
 
   // closes the info card
@@ -38,13 +37,13 @@ export class EventInfoComponent implements OnInit {
   delete() {
     this.event.remove();
     this.close();
-    this.snackBar.open("Deleted Event!", "", {
-      duration: 3000
+    this.snackBar.open('Deleted Event!', '', {
+      duration: 3000,
     });
   }
 
   // opens the form to edit the event
-  edit(): void{
+  edit(): void {
     this.dialog.open(EditEventComponent, {
       data: this.event,
     });

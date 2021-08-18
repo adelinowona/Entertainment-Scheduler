@@ -1,24 +1,25 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { EventService } from 'src/app/services/event.service';
+import {EventService} from 'src/app/services/event.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import { HomeComponent } from '../home/home.component';
-import { ApiService } from 'src/app/services/api.service';
+import {HomeComponent} from '../home/home.component';
+import {ApiService} from 'src/app/services/api.service';
 import {MatButtonModule} from '@angular/material/button';
-import { DataService } from 'src/app/services/data.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-
+import {DataService} from 'src/app/services/data.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
   selector: 'app-add-event-box',
   templateUrl: './add-event-box.component.html',
-  styleUrls: ['./add-event-box.component.css']
+  styleUrls: ['./add-event-box.component.css'],
 })
 export class AddEventBoxComponent implements OnInit {
   searchResult: any;
-  searchError = "";
+  searchError = '';
 
   // different colors assignable to created events
   colors: any[] = [];
@@ -46,14 +47,14 @@ export class AddEventBoxComponent implements OnInit {
     borderColor: new FormControl(''),
     daysOfWeek: new FormControl(''),
     startRecur: new FormControl(''),
-    endRecur: new FormControl('')
+    endRecur: new FormControl(''),
   })
 
   // formgroup for the info submitted for a TV show event
   tvForm = new FormGroup({
     episodesPerDay: new FormControl(1),
     backgroundColor: new FormControl('#FF2626'),
-    groupId: new FormControl('')
+    groupId: new FormControl(''),
   })
 
   constructor(public dialogRef: MatDialogRef<AddEventBoxComponent>, private addEventService: EventService, private apiService: ApiService, private dataSource: DataService, private snackBar: MatSnackBar) {
@@ -67,45 +68,45 @@ export class AddEventBoxComponent implements OnInit {
 
   // closes the Add event form that is open
   close(): void {
-    document.querySelectorAll<HTMLElement>(".cdk-overlay-backdrop")[0].style.background = "rgb(0, 0, 0, .32)";
+    document.querySelectorAll<HTMLElement>('.cdk-overlay-backdrop')[0].style.background = 'rgb(0, 0, 0, .32)';
     this.dialogRef.close();
   }
 
   // defocus the add event form
   removeOverlay() {
-    document.querySelectorAll<HTMLElement>(".cdk-overlay-backdrop")[0].style.background = "rgb(0, 0, 0, .0)";
+    document.querySelectorAll<HTMLElement>('.cdk-overlay-backdrop')[0].style.background = 'rgb(0, 0, 0, .0)';
   }
 
   // searches for the tv show from the user input using the api
   seachTV(val: any) {
     this.apiService.search(val)
-      .then(res => {
+        .then((res) => {
         // console.log(res.data);
-        if (res.data.Response) {
-          this.searchError = "";
-          this.searchResult = res.data.Search;
-        } else {
-          this.searchError = res.data.Error;
-        }
-      })
+          if (res.data.Response) {
+            this.searchError = '';
+            this.searchResult = res.data.Search;
+          } else {
+            this.searchError = res.data.Error;
+          }
+        });
   }
 
   // confirms the selected tv show and retrieves its seasons
   select(tvInfo: any) {
     this.apiService.getFromId(tvInfo.imdbID)
-      .then(res => {
-        this.selectedTvInfo = res.data;
+        .then((res) => {
+          this.selectedTvInfo = res.data;
 
-        this.seasonArray = [];
-        this.apiService.getTVFromTMDB().then(resp => {
-          for (let i = 1; i <= parseInt(this.selectedTvInfo.totalSeasons); i++) {
+          this.seasonArray = [];
+          this.apiService.getTVFromTMDB().then((resp) => {
+            for (let i = 1; i <= parseInt(this.selectedTvInfo.totalSeasons); i++) {
             // @ts-ignore
-            this.seasonArray.push(resp.data.seasons[i-1]);
-          }
-          console.log(resp.data);
-          console.log(this.selectedTvInfo)
-        })
-      })
+              this.seasonArray.push(resp.data.seasons[i-1]);
+            }
+            console.log(resp.data);
+            console.log(this.selectedTvInfo);
+          });
+        });
   }
 
   // cancels the select
@@ -115,11 +116,10 @@ export class AddEventBoxComponent implements OnInit {
   }
 
   // adds a day when defining recurrence and removes a day if already exists
-  updateDaysOfWeek(day: string){
-    if(this.daysOfWeek.indexOf(day) == -1){
+  updateDaysOfWeek(day: string) {
+    if (this.daysOfWeek.indexOf(day) == -1) {
       this.daysOfWeek.push(day);
-    }
-    else{
+    } else {
       this.daysOfWeek.splice(this.daysOfWeek.indexOf(day), 1);
     }
   }
@@ -127,11 +127,11 @@ export class AddEventBoxComponent implements OnInit {
   // submits the data for a regular event
   submit(): void {
     console.log(this.eventForm.value);
-    
+
     this.eventForm.value.groupId = this.eventForm.value.backgroundColor;
     this.eventForm.value.borderColor = this.eventForm.value.backgroundColor;
-    if(this.eventForm.value.isRecurring){
-      let today = new Date();
+    if (this.eventForm.value.isRecurring) {
+      const today = new Date();
       this.eventForm.value.daysOfWeek = this.daysOfWeek;
       this.eventForm.value.startRecur = today.toISOString();
     }
@@ -140,11 +140,10 @@ export class AddEventBoxComponent implements OnInit {
   }
 
   // adds and stores selected season numbers into an array
-  addToSelected(season: number){
-    if(this.selectedSeasons.indexOf(season) == -1){
+  addToSelected(season: number) {
+    if (this.selectedSeasons.indexOf(season) == -1) {
       this.selectedSeasons.push(season);
-    }
-    else{
+    } else {
       this.selectedSeasons.splice(this.selectedSeasons.indexOf(season), 1);
     }
   }
@@ -157,13 +156,13 @@ export class AddEventBoxComponent implements OnInit {
   }
 
   // returns the available time between two times in minutes
-  private availableMinutes(start: string, end: string): number{
+  private availableMinutes(start: string, end: string): number {
     return this.timeInmins(end) - this.timeInmins(start);
   }
 
-  //returns the time in minutes
-  private timeInmins(time: string): number{
-    let timeArr = time.split(":");
+  // returns the time in minutes
+  private timeInmins(time: string): number {
+    const timeArr = time.split(':');
     return (parseInt(timeArr[0]) * 60) + parseInt(timeArr[1]);
   }
 
@@ -172,32 +171,31 @@ export class AddEventBoxComponent implements OnInit {
   }
 
   // Generates the tv schedule event blocks
-  generateTV(){
-    let timeSchedule = this.dataSource.getTimeTable();
+  generateTV() {
+    const timeSchedule = this.dataSource.getTimeTable();
 
-    if(this.daysOfWeek.length == 0){
-      this.daysOfWeek = ['0','1','2','3','4','5','6'];
+    if (this.daysOfWeek.length == 0) {
+      this.daysOfWeek = ['0', '1', '2', '3', '4', '5', '6'];
     }
-    if(this.selectedSeasons.length == 0){
-      for(let i = 0; i < this.seasonArray.length; i++){
+    if (this.selectedSeasons.length == 0) {
+      for (let i = 0; i < this.seasonArray.length; i++) {
         this.selectedSeasons.push(i+1);
       }
     }
     this.daysOfWeek.sort();
     this.selectedSeasons.sort();
 
-    if(Object.keys(timeSchedule).length == 0){
-      this.snackBar.open("No Leisure Time Table Set!", "", {
+    if (Object.keys(timeSchedule).length == 0) {
+      this.snackBar.open('No Leisure Time Table Set!', '', {
         duration: 3000,
-        verticalPosition: 'top'
+        verticalPosition: 'top',
       });
-    }
-    else{
-      let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-      
-      let today = new Date();
+    } else {
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+      const today = new Date();
       let currSelectedDay = 0;
-      if(today.getDay() == parseInt(this.daysOfWeek[currSelectedDay])){
+      if (today.getDay() == parseInt(this.daysOfWeek[currSelectedDay])) {
         today.setDate(today.getDate() + 1);
         currSelectedDay += 1;
         currSelectedDay %= this.daysOfWeek.length;
@@ -208,48 +206,47 @@ export class AddEventBoxComponent implements OnInit {
       let dayEndTime = timeSchedule[day][1];
       let availableTime = this.availableMinutes(dayStartTime, dayEndTime);
 
-      let episodes_runtime: number = parseInt(this.selectedTvInfo.Runtime);
-      let maxEpisodesForDay = Math.floor(availableTime / episodes_runtime);
+      const episodesRuntime: number = parseInt(this.selectedTvInfo.Runtime);
+      let maxEpisodesForDay = Math.floor(availableTime / episodesRuntime);
 
       let seriesName: string = this.selectedTvInfo.Title;
-      if(seriesName.length > 10){
-        seriesName = seriesName.substring(0,11) + '...';
+      if (seriesName.length > 10) {
+        seriesName = seriesName.substring(0, 11) + '...';
       }
-      this.dataSource.addShow(seriesName)
+      this.dataSource.addShow(seriesName);
 
       let epsSet = 0;
       for (let i = 0; i < this.selectedSeasons.length; i++) {
-        let eps = this.seasonArray[this.selectedSeasons[i]-1].episode_count;
-        for(let j = 0; j < eps; j++){
-
-          if(maxEpisodesForDay == 0 || this.tvForm.value.episodesPerDay == epsSet){
+        const eps = this.seasonArray[this.selectedSeasons[i]-1].episode_count;
+        for (let j = 0; j < eps; j++) {
+          if (maxEpisodesForDay == 0 || this.tvForm.value.episodesPerDay == epsSet) {
             currSelectedDay += 1;
             currSelectedDay %= this.daysOfWeek.length;
             day = days[parseInt(this.daysOfWeek[currSelectedDay])];
             dayStartTime = timeSchedule[day][0];
             dayEndTime = timeSchedule[day][1];
             availableTime = this.availableMinutes(dayStartTime, dayEndTime);
-            maxEpisodesForDay = Math.floor(availableTime / episodes_runtime);
+            maxEpisodesForDay = Math.floor(availableTime / episodesRuntime);
             epsSet = 0;
           }
 
-          let name = seriesName + '(S' + this.seasonArray[this.selectedSeasons[i]-1].season_number + "E" + (j+1) + ')';
+          const name = seriesName + '(S' + this.seasonArray[this.selectedSeasons[i]-1].season_number + 'E' + (j+1) + ')';
 
           let dateIncrement = parseInt(this.daysOfWeek[currSelectedDay]) - today.getDay();
-          if(dateIncrement < 0){
+          if (dateIncrement < 0) {
             dateIncrement += 7;
           }
           dateIncrement *= 86400000;
           today.setTime(today.getTime() + dateIncrement);
 
-          let start = new Date();
+          const start = new Date();
           start.setTime(today.getTime());
           start.setHours(dayStartTime.split(':')[0]);
           start.setMinutes(dayStartTime.split(':')[1]);
 
-          dayEndTime = this.toTimeString(this.timeInmins(dayStartTime) + episodes_runtime);
+          dayEndTime = this.toTimeString(this.timeInmins(dayStartTime) + episodesRuntime);
 
-          let end = new Date();
+          const end = new Date();
           end.setTime(start.getTime());
           end.setHours(dayEndTime.split(':')[0]);
           end.setMinutes(dayEndTime.split(':')[1]);
@@ -260,11 +257,11 @@ export class AddEventBoxComponent implements OnInit {
             title: name,
             backgroundColor: this.tvForm.value.backgroundColor,
             start: start,
-            end: end
-          })
+            end: end,
+          });
           epsSet += 1;
           maxEpisodesForDay -= 1;
-          dayStartTime = this.toTimeString(this.timeInmins(dayStartTime) + episodes_runtime);
+          dayStartTime = this.toTimeString(this.timeInmins(dayStartTime) + episodesRuntime);
         }
       }
     }

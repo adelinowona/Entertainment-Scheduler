@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TvButtonComponent } from './tv-button.component';
+import {TvButtonComponent} from './tv-button.component';
 
 describe('TvButtonComponent', () => {
   let component: TvButtonComponent;
@@ -8,9 +8,9 @@ describe('TvButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TvButtonComponent ]
+      declarations: [TvButtonComponent],
     })
-    .compileComponents();
+        .compileComponents();
   });
 
   beforeEach(() => {
