@@ -55,7 +55,7 @@ export class HomeComponent implements OnInit {
     this.calendarOptions = {
       customButtons: {
         mobileView: {
-          text: 'placeholder0',
+          text: 'Toggle View',
           click: () => {
             this.calendarComponent.getApi().changeView(tmp0[tmp1()]);
           }
