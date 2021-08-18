@@ -131,7 +131,7 @@ export class HomeComponent implements OnInit {
     let eventArr = this.calendarApi.getEvents();
     for(let i=0; i < eventArr.length; i++){
       let temp = eventArr[i];
-      if(status == true){
+      if(status){
         if(temp.backgroundColor == color){
           temp.setProp('display', 'none');
         }
