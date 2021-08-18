@@ -55,6 +55,7 @@ export class HomeComponent implements OnInit {
       customButtons: {
         mobileView: {
           text: "Change View", // ToDo: get this to actively update -> modileData.changeViewTxt[viewIndex],
+                               // Appears that Angular is statically built. Try to find workarounds
           click: () => {
             this.calendarComponent.getApi().changeView(modileData.views[tmp3()]);
           }
@@ -63,7 +64,7 @@ export class HomeComponent implements OnInit {
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: this.mobileMode ? 'mobileView' : 'dayGridMonth,timeGridWeek,timeGridDay'
+        right: this.mobileMode ? 'mobileView' : 'dayGridMonth,timeGridWeek,timeGridDay' // Inbuilt screen selection. Original UI is decent for mobile,
       },
       initialView: this.mobileMode?'timeGridWeek':'dayGridMonth',
       selectable: true,
