@@ -18,6 +18,7 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 })
 export class HomeComponent implements OnInit {
   mobileQuery: MediaQueryList;
+  mobileMode: boolean;
   private _mobileQueryListener: () => void;
 
   subscription: Subscription;
@@ -25,7 +26,6 @@ export class HomeComponent implements OnInit {
    @ViewChild('calendar') calendarComponent!: FullCalendarComponent;
    calendarApi!: Calendar;
    calendarOptions: CalendarOptions = {};
-  private mobileMode: boolean;
 
 
   constructor(private uiService: UiService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher, public dialog: MatDialog, private addEventService: EventService, private deviceService: DeviceDetectorService) {
@@ -41,27 +41,31 @@ export class HomeComponent implements OnInit {
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
-  ngOnInit(): void {let tmp = this.mobileMode;
+  ngOnInit(): void {
     let tmp2 = this.mobileQuery.matches;
-    let tmp0 = ['dayGridMonth','timeGridWeek','timeGridDay']
+    let modileData = {
+      views:['timeGridWeek','timeGridDay'],
+      changeViewTxt: ['Weekly View','Daily View']
+    }
+
     let viewIndex = 0;
-    let tmp1 = () => {let i = viewIndex; viewIndex = (viewIndex+1)%3;return i}
+    let tmp3 = () => {viewIndex = (viewIndex+1)%2;return viewIndex}
 
     this.calendarOptions = {
       customButtons: {
         mobileView: {
-          text: 'Toggle View',
+          text: "Change View", // ToDo: get this to actively update -> modileData.changeViewTxt[viewIndex],
           click: () => {
-            this.calendarComponent.getApi().changeView(tmp0[tmp1()]);
+            this.calendarComponent.getApi().changeView(modileData.views[tmp3()]);
           }
         }
       },
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        right: this.mobileMode ? 'mobileView' : 'dayGridMonth,timeGridWeek,timeGridDay'
       },
-      initialView: 'dayGridMonth',
+      initialView: this.mobileMode?'timeGridWeek':'dayGridMonth',
       selectable: true,
       select: this.openAddForm.bind(this),
       eventClick: this.openEventInfo.bind(this),
