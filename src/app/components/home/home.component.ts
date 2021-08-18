@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
     // Unsubscribe to ensure no memory leaks
     this.subscription.unsubscribe();
   }
-
+  
   // re-renders the calendar after toggling the side options window
   render() {
     this.calendarApi = this.calendarComponent.getApi();
@@ -112,7 +112,7 @@ export class HomeComponent implements OnInit {
     let eventArr = this.calendarApi.getEvents();
     for(let i=0; i < eventArr.length; i++){
       let temp = eventArr[i];
-      if(status){
+      if(status == true){
         if(temp.backgroundColor == color){
           temp.setProp('display', 'none');
         }
