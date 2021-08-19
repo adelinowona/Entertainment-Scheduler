@@ -30,22 +30,22 @@
 
         <!--  Time if not recurring and not all day-->
         <div *ngIf="!this.eventForm.value.isRecurring && !this.eventForm.value.allDay" class="time block">
-          <mat-form-field appearance="outline" class="">
+          <mat-form-field appearance="outline">
             <input matInput type="datetime-local" placeholder="Start" formControlName="start">
           </mat-form-field>
           <p class="inline">to</p>
-          <mat-form-field appearance="outline" class="">
+          <mat-form-field appearance="outline">
             <input matInput type="datetime-local" placeholder="End" formControlName="end">
           </mat-form-field>
         </div>
 
         <!--  Time if not recurring but all day-->
         <div *ngIf="!this.eventForm.value.isRecurring && this.eventForm.value.allDay" class="time block">
-          <mat-form-field appearance="outline" class="">
+          <mat-form-field appearance="outline">
             <input matInput type="date" placeholder="Start Date" formControlName="start">
           </mat-form-field>
           <p class="inline">to</p>
-          <mat-form-field appearance="outline" class="">
+          <mat-form-field appearance="outline">
             <input matInput type="date" placeholder="End Date" formControlName="end">
           </mat-form-field>
         </div>

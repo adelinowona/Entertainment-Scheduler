@@ -5,29 +5,29 @@
 -->
 
 <div class="form" [formGroup]="scheduleForm">
-    <mat-card-title class="title inline">Set Your Free Time</mat-card-title>
+  <mat-card-title class="title inline">Set Your Free Time</mat-card-title>
 
-    <div class="time block">
-        <mat-form-field appearance="outline">
-            <mat-label>Day</mat-label>
-            <mat-select [value]="days[next]" formControlName="currDay">
-                <mat-option *ngFor="let day of days" [value]="day" (click)="disableTime = false">
-                    {{day}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
+  <div class="time block">
+    <mat-form-field appearance="outline">
+      <mat-label>Day</mat-label>
+      <mat-select [value]="days[next]" formControlName="currDay">
+        <mat-option *ngFor="let day of days" [value]="day" (click)="disableTime = false">
+          {{day}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-    <div class="time block">
-        <mat-form-field appearance="outline">
-            <input matInput type="time" placeholder="Start Time" formControlName="startTime" [readonly]="disableTime">
-        </mat-form-field>
-        -
-        <mat-form-field appearance="outline">
-            <input matInput type="time" placeholder="End Time" formControlName="endTime" [readonly]="disableTime">
-        </mat-form-field>
-    </div>
+  <div class="time block">
+    <mat-form-field appearance="outline">
+      <input matInput type="time" placeholder="Start Time" formControlName="startTime" [readonly]="disableTime">
+    </mat-form-field>
+    -
+    <mat-form-field appearance="outline">
+      <input matInput type="time" placeholder="End Time" formControlName="endTime" [readonly]="disableTime">
+    </mat-form-field>
+  </div>
 
-    <button mat-button color="primary" type="submit" id="saveBtn" (click)="onSave()">Save</button>
-    <button mat-button color="primary" type="button" id="nextBtn" (click)="nextDay()">Next</button>
+  <button mat-button color="primary" type="submit" id="saveBtn" (click)="onSave()">Save</button>
+  <button mat-button color="primary" type="button" id="nextBtn" (click)="nextDay()">Next</button>
 </div>

@@ -27,22 +27,22 @@
 
     <!--  Time if not recurring and not all day-->
     <div *ngIf="!this.editForm.value.isRecurring && !this.editForm.value.allDay" class="time block">
-      <mat-form-field appearance="outline" class="">
+      <mat-form-field appearance="outline">
         <input matInput type="datetime-local" placeholder="Start" formControlName="start">
       </mat-form-field>
       <p class="inline">to</p>
-      <mat-form-field appearance="outline" class="">
+      <mat-form-field appearance="outline">
         <input matInput type="datetime-local" placeholder="End" formControlName="end">
       </mat-form-field>
     </div>
 
     <!--  Time if not recurring but all day-->
     <div *ngIf="!this.editForm.value.isRecurring && this.editForm.value.allDay" class="time block">
-      <mat-form-field appearance="outline" class="">
+      <mat-form-field appearance="outline">
         <input matInput type="date" placeholder="Start Date" formControlName="start">
       </mat-form-field>
       <p class="inline">to</p>
-      <mat-form-field appearance="outline" class="">
+      <mat-form-field appearance="outline">
         <input matInput type="date" placeholder="End Date" formControlName="end">
       </mat-form-field>
     </div>
@@ -61,11 +61,11 @@
       </mat-button-toggle-group>
 
       <div class="time block">
-        <mat-form-field appearance="outline" class="">
+        <mat-form-field appearance="outline">
           <input matInput type="time" placeholder="Start Time" formControlName="startTime">
         </mat-form-field>
         <p class="inline">to</p>
-        <mat-form-field appearance="outline" class="">
+        <mat-form-field appearance="outline">
           <input matInput type="time" placeholder="End Time" formControlName="endTime">
         </mat-form-field>
       </div>
