@@ -1,20 +1,20 @@
 
 .block {
-    display: block;
-    width: auto;
-    margin-top: 20px;
+  display: block;
+  width: auto;
+  margin-top: 20px;
 }
 
 .colorSelect{
-    height: 30px;
-    width: 30px;
-    margin-bottom: 5px;
+  height: 30px;
+  width: 30px;
+  margin-bottom: 5px;
 }
 
 #saveBtn{
-    float: right;
+  float: right;
 }
 
 #nextBtn{
-    float: left;
+  float: left;
 }

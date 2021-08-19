@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FullCalendarComponent } from './full-calendar.component';
+import {FullCalendarComponent} from './full-calendar.component';
 
 describe('FullCalendarComponent', () => {
   let component: FullCalendarComponent;
@@ -8,9 +8,9 @@ describe('FullCalendarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FullCalendarComponent ]
+      declarations: [FullCalendarComponent],
     })
-    .compileComponents();
+        .compileComponents();
   });
 
   beforeEach(() => {

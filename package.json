@@ -30,11 +30,11 @@
     "@fullcalendar/timegrid": "^5.8.0",
     "axios": "^0.21.1",
     "express": "^4.17.1",
+    "ngx-device-detector": "~2.1.1",
     "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
-    "zone.js": "~0.11.4",
-    "ngx-device-detector": "~2.1.1"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^12.1.2",
@@ -42,6 +42,10 @@
     "@angular/compiler-cli": "~12.1.0",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "eslint-config-google": "^0.14.0",
     "jasmine-core": "~3.7.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

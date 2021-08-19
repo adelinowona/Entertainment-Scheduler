@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogModule } from "@angular/material/dialog";
-import { AddEventBoxComponent } from '../components/add-event-box/add-event-box.component';
-import { EventInfoComponent } from '../components/event-info/event-info.component';
-import { TimeTableComponent } from '../components/time-table/time-table.component';
+/* eslint-disable max-len */
+import {Injectable} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {AddEventBoxComponent} from '../components/add-event-box/add-event-box.component';
+import {EventInfoComponent} from '../components/event-info/event-info.component';
+import {TimeTableComponent} from '../components/time-table/time-table.component';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UiService {
-
   constructor(public dialog: MatDialog) {}
 
   // opens the add event form

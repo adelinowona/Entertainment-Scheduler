@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
+/* eslint-disable max-len */
+import {Injectable} from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
-
   // different colors assignable to an event
-  colors: any[] = ['#FF2626','#FF8C26', '#FBBC04', '#04F100', '#3390FF', '#AF6CFF', '#E334FF'];
-  
+  colors: any[] = ['#FF2626', '#FF8C26', '#FBBC04', '#04F100', '#3390FF', '#AF6CFF', '#E334FF'];
+
   // tores the leisure time table
   timeSchedule: {[key:string]: any[]} = {};
 
@@ -17,33 +17,33 @@ export class DataService {
   constructor() { }
 
   // sets the time schedule
-  setTimeTable(arg: any){
+  setTimeTable(arg: any) {
     this.timeSchedule = arg;
     console.log(this.timeSchedule);
   }
 
   // sets the time schedule
-  getTimeTable(): any{
+  getTimeTable(): any {
     return this.timeSchedule;
   }
 
   // adds to the TV Shows array
-  addShow(arg: string){
-    if(!this.tvShows.includes(arg)){
+  addShow(arg: string) {
+    if (!this.tvShows.includes(arg)) {
       this.tvShows.push(arg);
     }
   }
 
   // gets the TV show array
-  getTvShows(): any{
+  getTvShows(): any {
     return this.tvShows;
   }
 
   // removes the TV show
-  removeShow(arg: string){
-    if(this.tvShows.includes(arg)){
-      let index = this.tvShows.indexOf(arg);
-      this.tvShows.splice(index,1);
+  removeShow(arg: string) {
+    if (this.tvShows.includes(arg)) {
+      const index = this.tvShows.indexOf(arg);
+      this.tvShows.splice(index, 1);
     }
   }
 }

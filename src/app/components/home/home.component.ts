@@ -1,20 +1,22 @@
-import {ChangeDetectorRef, Component, OnInit,HostListener} from '@angular/core';
-import { UiService } from 'src/app/services/ui.service';
-import { Subscription } from 'rxjs';
-import {MediaMatcher} from "@angular/cdk/layout";
-import { MatDialog, MatDialogModule } from "@angular/material/dialog";
-import { ViewChild } from '@angular/core';
-import { FullCalendarComponent, CalendarOptions, Calendar } from '@fullcalendar/angular';
+/* eslint-disable max-len */
+/* eslint-disable no-unused-vars */
+import {ChangeDetectorRef, Component, OnInit, HostListener} from '@angular/core';
+import {UiService} from 'src/app/services/ui.service';
+import {Subscription} from 'rxjs';
+import {MediaMatcher} from '@angular/cdk/layout';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {ViewChild} from '@angular/core';
+import {FullCalendarComponent, CalendarOptions, Calendar} from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
-import { AddEventBoxComponent } from '../add-event-box/add-event-box.component'
-import { EventInfoComponent } from '../event-info/event-info.component';
-import { EventService } from 'src/app/services/event.service';
-import { DeviceDetectorService } from 'ngx-device-detector';
+import {AddEventBoxComponent} from '../add-event-box/add-event-box.component';
+import {EventInfoComponent} from '../event-info/event-info.component';
+import {EventService} from 'src/app/services/event.service';
+import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
   mobileQuery: MediaQueryList;
@@ -32,8 +34,8 @@ export class HomeComponent implements OnInit {
     /* subscribe this component to the Add event service so it listens to
        any changes on whether to add a new event*/
     this.subscription = this.addEventService
-      .onEventAdd()
-      .subscribe((event) => (this.addToCalendar(event)));
+        .onEventAdd()
+        .subscribe((event) => (this.addToCalendar(event)));
 
     this.mobileMode = this.deviceService.isMobile();
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -42,35 +44,37 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let tmp2 = this.mobileQuery.matches;
-    let modileData = {
-      views:['timeGridWeek','timeGridDay'],
-      changeViewTxt: ['Weekly View','Daily View']
-    }
+    const tmp2 = this.mobileQuery.matches;
+    const modileData = {
+      views: ['timeGridWeek', 'timeGridDay'],
+      changeViewTxt: ['Weekly View', 'Daily View'],
+    };
 
     let viewIndex = 0;
-    let tmp3 = () => {viewIndex = (viewIndex+1)%2;return viewIndex}
-//loasfe
+    const tmp3 = () => {
+      viewIndex = (viewIndex+1)%2; return viewIndex;
+    };
+    // loasfe
     this.calendarOptions = {
       customButtons: {
         mobileView: {
-          text: "Change View", // ToDo: get this to actively update -> modileData.changeViewTxt[viewIndex],
-                               // Appears that Angular is statically built. Try to find workarounds
+          text: 'Change View', // ToDo: get this to actively update -> modileData.changeViewTxt[viewIndex],
+          // Appears that Angular is statically built. Try to find workarounds
           click: () => {
             this.calendarComponent.getApi().changeView(modileData.views[tmp3()]);
-          }
-        }
+          },
+        },
       },
       headerToolbar: {
         left: 'prev,next today',
         center: 'title',
-        right: this.mobileMode ? 'mobileView' : 'dayGridMonth,timeGridWeek,timeGridDay' // Inbuilt screen selection. Original UI is decent for mobile,
+        right: this.mobileMode ? 'mobileView' : 'dayGridMonth,timeGridWeek,timeGridDay', // Inbuilt screen selection. Original UI is decent for mobile,
       },
       initialView: this.mobileMode?'timeGridWeek':'dayGridMonth',
       selectable: true,
       select: this.openAddForm.bind(this),
       eventClick: this.openEventInfo.bind(this),
-      height: '90vh'
+      height: '90vh',
     };
   }
 
@@ -100,36 +104,34 @@ export class HomeComponent implements OnInit {
   }
 
   // adds an event to the calendar
-  addToCalendar(event: any){
+  addToCalendar(event: any) {
     this.calendarApi = this.calendarComponent.getApi();
     this.calendarApi.addEvent(event);
     this.calendarApi.render();
   }
 
   // allows the user to scroll to move the calendar forward or backward in time
-  scroll($event : any){
-    var tmp = $event.deltaY;
-    if(tmp>0 && this.calendarComponent.getApi().view.type == 'dayGridMonth'){
+  scroll($event : any) {
+    const tmp = $event.deltaY;
+    if (tmp>0 && this.calendarComponent.getApi().view.type == 'dayGridMonth') {
       this.calendarComponent.getApi().prev();
-    }else if(tmp<0 && this.calendarComponent.getApi().view.type == 'dayGridMonth'){
+    } else if (tmp<0 && this.calendarComponent.getApi().view.type == 'dayGridMonth') {
       this.calendarComponent.getApi().next();
     }
   }
 
   // toggles visibility for an event category
-  toggleVisibility(status: Boolean, color: String)
-  {
+  toggleVisibility(status: Boolean, color: String) {
     this.calendarApi = this.calendarComponent.getApi();
-    let eventArr = this.calendarApi.getEvents();
-    for(let i=0; i < eventArr.length; i++){
-      let temp = eventArr[i];
-      if(status){
-        if(temp.backgroundColor == color){
+    const eventArr = this.calendarApi.getEvents();
+    for (let i=0; i < eventArr.length; i++) {
+      const temp = eventArr[i];
+      if (status == true) {
+        if (temp.backgroundColor == color) {
           temp.setProp('display', 'none');
         }
-      }
-      else{
-        if(temp.backgroundColor == color){
+      } else {
+        if (temp.backgroundColor == color) {
           temp.setProp('display', 'auto');
         }
       }
@@ -137,12 +139,12 @@ export class HomeComponent implements OnInit {
   }
 
   // removes a tvshow from the calendar
-  removeTvShow(name: String){
+  removeTvShow(name: String) {
     this.calendarApi = this.calendarComponent.getApi();
-    let eventArr = this.calendarApi.getEvents();
-    for(let i=0; i < eventArr.length; i++){
-      let temp = eventArr[i];
-      if(temp.groupId == name){
+    const eventArr = this.calendarApi.getEvents();
+    for (let i=0; i < eventArr.length; i++) {
+      const temp = eventArr[i];
+      if (temp.groupId == name) {
         temp.remove();
       }
     }
